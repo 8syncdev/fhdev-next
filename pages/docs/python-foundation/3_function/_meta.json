@@ -1,0 +1,12 @@
+{
+  "0_func": "Bài 0. Hàm trong Python",
+  "1_default_arg": "Bài 1. Python - Tham số Mặc định",
+  "2_kwargs": "Bài 2. Python - Tham số từ khóa",
+  "3_only_args": "Bài 3. Python - Tham số chỉ từ khóa",
+  "4_pos_arg": "Bài 4. Python - Đối số theo Vị trí",
+  "5_arbitrary": "Bài 5. Python - Đối số Tùy ý",
+  "6_scope": "Bài 6. Python - Phạm vi Biến",
+  "7_anotation": "Bài 7. Python - Chú thích Hàm",
+  "8_module": "Bài 8. Python - Module (Module Python)",
+  "9_built-in": "Bài 9. Hàm Built-in Python"
+}

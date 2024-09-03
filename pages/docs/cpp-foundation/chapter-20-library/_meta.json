@@ -1,0 +1,13 @@
+{
+    "0": "Tăng hiệu năng thư viện C++",
+    "1": "OpenCV",
+    "2": "Poco",
+    "3": "Bộ đệm giao thức (protobuf)",
+    "4": "gRPC",
+    "5": "TenorFlow",
+    "6": "Pybind11",
+    "7": "Spdlog",
+    "8": "OpenCL",
+    "9": "fmt",
+    "10": "Ranges v3"
+}

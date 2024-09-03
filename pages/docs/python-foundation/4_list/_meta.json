@@ -1,0 +1,13 @@
+{
+  "0_list": "Bài 0. Python - Danh Sách (Lists)",
+  "1_access": "Bài 1. Python - Truy Cập Các Phần Tử trong Danh Sách",
+  "2_change": "Bài 2. Python - Thay Đổi Các Phần Tử trong Danh Sách",
+  "3_add": "Bài 3. Python - Thêm Phần Tử vào Danh Sách",
+  "4_delete": "Bài 4. Python - Xóa Phần Tử trong Danh Sách",
+  "5_loop": "Bài 5. Python - Lặp Qua Danh Sách",
+  "6_comp": "Bài 6. Python - List Comprehension",
+  "7_sort": "Bài 7. Python - Sắp xếp Danh sách",
+  "8_copy": "Bài 8. Python - Sao chép Danh sách",
+  "9_join": "Bài 9. Python - Kết hợp Danh sách",
+  "10_built-in": "Bài 10. Python - Phương thức của Danh sách"
+}

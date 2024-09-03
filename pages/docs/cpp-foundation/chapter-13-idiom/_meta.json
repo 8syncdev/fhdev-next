@@ -1,0 +1,10 @@
+{
+    "0": "Đặc ngữ C++",
+    "1": "RAII (Chuyển đổi tài nguyên là Khởi tạo)",
+    "2": "Đặc ngữ Pimpl",
+    "3": "CRTP",
+    "4": "Non-Copyable",
+    "5": "Đặc ngữ Erase-remove",
+    "6": "Copy và Swap",
+    "7": "Đặc ngữ Copy-Write"
+}

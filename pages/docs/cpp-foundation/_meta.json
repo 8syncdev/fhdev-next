@@ -1,0 +1,23 @@
+{
+    "chapter-1-introduction-to-the-language": "Chương 1. Giới thiệu về ngôn ngữ lập trình C++",
+    "chapter-2-setting-up-your-environment": "Chương 2. Thiết lập môi trường phát triển",
+    "chapter-3-basic-operations": "Chương 3. Các thao tác cơ bản",
+    "chapter-4-functions": "Chương 4. Hàm",
+    "chapter-5-data-types": "Chương 5. Kiểu dữ liệu",
+    "chapter-6-pointers-and-references": "Chương 6. Con trỏ và tham chiếu",
+    "chapter-7-structuring-codebase": "Chương 7. Cấu trúc mã nguồn",
+    "chapter-8-structures-and-classes": "Chương 8. Cấu trúc và lớp",
+    "chapter-9-exception-handling": "Chương 9. Xử lý ngoại lệ",
+    "chapter-10-language-concepts": "Chương 10. Các khái niệm về ngôn ngữ",
+    "chapter-11-stl": "Chương 11. Thư viện mẫu chuẩn (STL)",
+    "chapter-12-template": "Chương 12. Mẫu (Template)",
+    "chapter-13-idiom": "Chương 13. Idiom trong C++",
+    "chapter-14-standards": "Chương 14. Tiêu chuẩn C++",
+    "chapter-15-debuggers": "Chương 15. Trình gỡ lỗi",
+    "chapter-16-compilers": "Chương 16. Trình biên dịch",
+    "chapter-17-build-system": "Chương 17. Hệ thống xây dựng",
+    "chapter-18-package": "Chương 18. Quản lý gói",
+    "chapter-19-working-with-libraries": "Chương 19. Làm việc với thư viện",
+    "chapter-20-library": "Chương 20. Thư viện",
+    "chapter-21-framework": "Chương 21. Khung làm việc (Framework)"
+}

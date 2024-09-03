@@ -1,0 +1,18 @@
+{
+  "01_Introducing_Python": "Chương 1: Giới thiệu về Python",
+  "02_Python_Program_Structure": "Chương 2: Cấu trúc chương trình Python",
+  "03_Conditional_Statements": "Chương 3: Câu lệnh điều kiện",
+  "04_Loops": "Chương 4: Vòng lặp",
+  "05_Functions": "Chương 5: Hàm",
+  "06_Lists_and_Tuples": "Chương 6: Danh sách và tuple",
+  "07_Dictionaries_and_Sets": "Chương 7: Dictionary và Set",
+  "08_Working_with_Strings": "Chương 8: Làm việc với chuỗi (String)",
+  "09_OOP_Introduction": "Chương 9: Giới thiệu về lập trình hướng đối tượng",
+  "10_Attributes_and_Methods": "Chương 10: Thuộc tính và phương thức",
+  "11_Inheritance": "Chương 11: Kế thừa",
+  "12_Polymorphism": "Chương 12: Đa hình",
+  "13_File_Handling": "Chương 13: Xử lý file",
+  "14_Working_with_JSON_and_XML": "Chương 14: Làm việc với JSON và XML",
+  "15_Errors_and_Exceptions": "Chương 15: Lỗi và ngoại lệ",
+  "16_Testing_and_Debugging": "Chương 16: Testing và Debugging"
+}

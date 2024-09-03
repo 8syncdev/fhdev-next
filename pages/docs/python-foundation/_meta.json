@@ -1,0 +1,10 @@
+{
+  "1_basic": "Chương 1: Kiến thức cơ bản về Python",
+  "2_control": "Chương 2: Câu lệnh điều khiển",
+  "3_function": "Chương 3: Hàm trong Python",
+  "4_list": "Chương 4: Danh sách (List)",
+  "5_string": "Chương 5: Chuỗi (String)",
+  "6_set": "Chương 6: Tập hợp (Set)",
+  "7_dict": "Chương 7: Từ điển (Dictionary)",
+  "8_tuple": "Chương 8: Tuple"
+}

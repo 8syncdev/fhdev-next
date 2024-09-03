@@ -1,0 +1,11 @@
+{
+    "0": "Con trỏ",
+    "1": "Tham chiếu",
+    "2": "Mô hình bộ nhớ trong C++",
+    "3": "Tuổi thọ của đối tượng trong C++",
+    "4": "Con trỏ đặc biệt (unique_ptr)",
+    "5": "Con trỏ dùng chung",
+    "6": "Con trỏ weak",
+    "7": "Con trỏ raw và toán tử new và delete",
+    "8": "Rò rỉ bộ nhớ"
+}

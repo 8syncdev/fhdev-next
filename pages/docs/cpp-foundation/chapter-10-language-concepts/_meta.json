@@ -1,0 +1,13 @@
+{
+    "0": "Khái niệm ngôn ngữ trong C++",
+    "1": "Macro C++",
+    "2": "Xáo trộn tên",
+    "3": "Tra cứu phụ thuộc đối số (ADL)",
+    "4": "Hành vi không xác định (UB)",
+    "5": "Truyền kiểu trong C++",
+    "6": " Static Cast",
+    "7": "Const_cast",
+    "8": "Dynamic Cast",
+    "9": "reinterpret_cast",
+    "10": "Tự động (Loại Trừ kiểu Tự Động)"
+}

@@ -1,0 +1,16 @@
+{
+  "0_flow": "Bài 0. Python - Luồng điều khiển",
+  "1_decision": "Bài 1. Python - Ra Quyết Định",
+  "2_if": "Bài 2. Python - Mệnh đề if",
+  "3_if_else": "Bài 3. Hướng dẫn Sử dụng Câu lệnh if-else trong Python",
+  "4_nested_if": "Bài 4. Hướng dẫn Sử dụng Câu lệnh if Lồng nhau trong Python",
+  "5_match": "Bài 5. Python - Câu lệnh Match-Case",
+  "6_loop": "Bài 6. Python - Vòng lặp",
+  "7_for": "Bài 7. Python - Vòng lặp For",
+  "8_for_else": "Bài 8. Python - Vòng lặp For Else",
+  "9_while": "Bài 9. Python - Vòng lặp While",
+  "10_break": "Bài 10.1. Python break Statement",
+  "10_continue": "Bài 10.2. Python continue Statement",
+  "11_pass": "Bài 11. Python pass Statement",
+  "12_nested_loop": "Bài 12. Python Nested Loops"
+}
