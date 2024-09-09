@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 import nextra from "nextra";
 
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+        pathname: '/v0/b/nextjs-djninex-store.appspot.com/**',
+      },
+    ],
+  },
+};
 
 const withNextra = nextra({
     theme: "nextra-theme-docs",
