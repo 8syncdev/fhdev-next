@@ -1,6 +1,9 @@
-import { GalaxyBackground, GalaxyCircleBackground } from "./background";
 
 export {
   GalaxyBackground,
-  GalaxyCircleBackground
-}
+  GalaxyCircleBackground,
+  BackgroundProvider,
+  BackgroundSwitcher,
+  useBackground
+} from "./canvas3d";
+

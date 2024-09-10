@@ -1,13 +1,14 @@
 import React from 'react'
-import { GalaxyBackground, GalaxyCircleBackground } from '@/components/dev'
+import { BackgroundProvider, BackgroundSwitcher, useBackground } from '@/components/dev'
+
+const Page = () => {
 
 
-const page = () => {
   return (
-    <>
-        <GalaxyCircleBackground />
-    </>
+    <BackgroundProvider>
+        <BackgroundSwitcher />
+    </BackgroundProvider>
   )
 }
 
-export default page
+export default Page

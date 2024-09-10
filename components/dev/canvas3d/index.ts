@@ -5,3 +5,9 @@ export {
   GalaxyBackground,
   GalaxyCircleBackground
 }
+
+export {
+  BackgroundProvider,
+  BackgroundSwitcher,
+  useBackground
+} from "./provider-bg";
