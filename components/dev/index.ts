@@ -7,3 +7,7 @@ export {
   useBackground
 } from "./canvas3d";
 
+
+export {
+  VideoShow
+} from './video'

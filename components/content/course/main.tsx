@@ -1,8 +1,8 @@
 'use client'
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { getCourses } from '@/server'
-import { CourseList } from '../section/top-selling'
-import type { Course, CoursesResponse } from '@/server'
+import { CourseList } from '../home/top-selling'
+import { Course, CoursesResponse } from '@/server/course.type'
 import { CustomPagination } from '@/components/shadcn'
 import { Button } from '@/components/ui/button'
 

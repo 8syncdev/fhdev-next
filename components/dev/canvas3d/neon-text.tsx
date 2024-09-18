@@ -12,6 +12,9 @@ interface NeonTextProps {
   starSize?: number;
   starSpeed?: number;
   randomStarColors?: boolean;
+  fullScreen?: boolean;
+  width?: number;
+  height?: number;
 }
 
 const NeonText: React.FC<NeonTextProps> = ({
@@ -24,31 +27,23 @@ const NeonText: React.FC<NeonTextProps> = ({
   starSize = 2,
   starSpeed = 0.3,
   randomStarColors = false,
+  fullScreen = true,
+  width = 300,
+  height = 150,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const random = useCallback((min: number, max?: number): number => {
-    if (typeof max === 'undefined') {
-      max = min;
-      min = 0;
-    }
-    if (min > max) {
-      const hold = max;
-      max = min;
-      min = hold;
-    }
+  const random = useCallback((min: number, max: number = min): number => {
+    if (min > max) [min, max] = [max, min];
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }, []);
 
   const getStarColor = useCallback(() => {
-    if (randomStarColors) {
-      const hue = random(0, 360);
-      const saturation = random(50, 100);
-      const lightness = random(70, 100);
-      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-    } else {
-      return '#00fff2'; // Default blue neon color
-    }
+    if (!randomStarColors) return '#00fff2'; // Default blue neon color
+    const hue = random(0, 360);
+    const saturation = random(50, 100);
+    const lightness = random(70, 100);
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }, [random, randomStarColors]);
 
   const Star = useMemo(() => {
@@ -71,16 +66,11 @@ const NeonText: React.FC<NeonTextProps> = ({
         this.z += speed;
         if (this.z > 1) {
           this.z = 0;
-          if (randomStarColors) {
-            this.color = getStarColor();
-          }
+          if (randomStarColors) this.color = getStarColor();
         }
         const twinkle = random(10);
-        if (twinkle === 1 && this.alpha > 0) {
-          this.alpha -= 0.05;
-        } else if (twinkle === 2 && this.alpha < 1) {
-          this.alpha += 0.05;
-        }
+        if (twinkle === 1 && this.alpha > 0) this.alpha -= 0.05;
+        else if (twinkle === 2 && this.alpha < 1) this.alpha += 0.05;
       }
 
       draw(ctx: CanvasRenderingContext2D) {
@@ -101,67 +91,67 @@ const NeonText: React.FC<NeonTextProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    let canvasWidth = fullScreen ? window.innerWidth : width;
+    let canvasHeight = fullScreen ? window.innerHeight : height;
     let animationFrameId: number;
 
     const setCanvasSize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      canvasWidth = fullScreen ? window.innerWidth : width;
+      canvasHeight = fullScreen ? window.innerHeight : height;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
     };
 
     const createTextPath = () => {
-      ctx.clearRect(0, 0, width, height);
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
       ctx.font = `bold ${fontSize}px Arial`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = color;
-      ctx.fillText(text, width / 2, height / 2);
-      
       ctx.shadowColor = glowColor;
       ctx.shadowBlur = 10;
-      ctx.fillText(text, width / 2, height / 2);
-      
-      return ctx.getImageData(0, 0, width, height);
+      ctx.fillText(text, canvasWidth / 2, canvasHeight / 2);
+      return ctx.getImageData(0, 0, canvasWidth, canvasHeight);
     };
 
-    const textImageData = createTextPath();
-    const stars: InstanceType<typeof Star>[] = [];
-
-    for (let x = 0; x < width; x += 4) {
-      for (let y = 0; y < height; y += 4) {
-        const i = (y * width + x) * 4;
-        if (textImageData.data[i + 3] > 128 && stars.length < maxStars) {
-          stars.push(new Star(x, y));
+    const initStars = (textImageData: ImageData) => {
+      const stars: InstanceType<typeof Star>[] = [];
+      for (let x = 0; x < canvasWidth; x += 4) {
+        for (let y = 0; y < canvasHeight; y += 4) {
+          const i = (y * canvasWidth + x) * 4;
+          if (textImageData.data[i + 3] > 128 && stars.length < maxStars) {
+            stars.push(new Star(x, y));
+          }
         }
       }
-    }
+      return stars;
+    };
 
-    const gradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, Math.max(width, height) / 2);
+    const gradient = ctx.createRadialGradient(canvasWidth / 2, canvasHeight / 2, 0, canvasWidth / 2, canvasHeight / 2, Math.max(canvasWidth, canvasHeight) / 2);
     gradient.addColorStop(0, 'rgba(16, 14, 23, 0.8)');
     gradient.addColorStop(1, 'rgba(16, 14, 23, 0.5)');
 
+    let stars = initStars(createTextPath());
+
     const animate = () => {
-      ctx.clearRect(0, 0, width, height);
-
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
       ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
-
+      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
       ctx.globalCompositeOperation = 'lighter';
-      for (let i = 0; i < stars.length; i++) {
-        stars[i].update(starSpeed * 0.01);
-        stars[i].draw(ctx);
-      }
-
+      stars.forEach(star => {
+        star.update(starSpeed * 0.01);
+        star.draw(ctx);
+      });
       animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const handleResize = () => {
+      setCanvasSize();
+      stars = initStars(createTextPath());
     };
 
     setCanvasSize();
     animate();
-
-    const handleResize = () => {
-      setCanvasSize();
-    };
 
     window.addEventListener('resize', handleResize);
 
@@ -169,14 +159,19 @@ const NeonText: React.FC<NeonTextProps> = ({
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [text, fontSize, color, glowColor, maxStars, Star, starSpeed, randomStarColors]);
+  }, [text, fontSize, color, glowColor, maxStars, Star, starSpeed, randomStarColors, fullScreen, width, height]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={cn('fixed top-0 left-0 w-full h-full', className)}
-      style={{ zIndex: 10 }}
-    />
+    <div className={cn('relative', fullScreen ? 'w-full h-full' : 'w-fit')}>
+      <canvas
+        ref={canvasRef}
+        className={cn(
+          fullScreen ? 'fixed top-0 left-0 w-full h-full' : 'w-full h-full',
+          className
+        )}
+        style={{ zIndex: 10 }}
+      />
+    </div>
   );
 };
 

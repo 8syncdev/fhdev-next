@@ -1,5 +1,5 @@
 import CourseIndex from "./main"
-import CourseDetail from "./detail"
+import CourseDetail from "./slug"
 export {
     CourseIndex,
     CourseDetail

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AllSection } from '@/components/content/section'
+import { AllSection } from '@/components/content/home'
 
 const page = () => {
   return (

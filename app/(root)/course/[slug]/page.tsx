@@ -7,7 +7,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
   const courseDetail = await getCourseDetail(slug) as any
   return (
-    <CourseDetail content={courseDetail} />
+    <CourseDetail content={courseDetail} courseId={slug} />
   )
 }
 

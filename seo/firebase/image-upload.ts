@@ -26,38 +26,41 @@ export const urlImageCourseDetails = [
     {
         title: "Làm Chủ Python Hoàn Toàn",
         description: "Tất cả những gì bạn cần để lập trình bằng Python trong một khóa học (bao gồm 3 dự án thực tế)",
-        duration: "12h",
-        price: "350.000đ",
-        originalPrice: "3.500.000đ",
+        duration: 12,
+        price: 350000,
+        originalPrice: 3500000,
         link: "/p/python-programming-course-beginners",
-        image: urlImageCourse['python']
+        image: urlImageCourse['python'],
+        categories: ["python", "programming"]
     },
     {
         title: "Làm Chủ Django Hoàn Toàn",
         description: "Học cách xây dựng ứng dụng web mạnh mẽ với Django - Framework Python phổ biến nhất cho phát triển web",
-        duration: "14h",
-        price: "350.000đ",
-        originalPrice: "3.500.000đ",
+        duration: 14,
+        price: 350000,
+        originalPrice: 3500000,
         link: "/p/django-web-development-mastery",
-        image: urlImageCourse['django']
+        image: urlImageCourse['django'],
+        categories: ["django", "web development", "python"]
     },
     {
         title: "Next.js: Từ Cơ Bản Đến Nâng Cao",
         description: "Học cách xây dựng ứng dụng web hiện đại, hiệu suất cao với Next.js - Framework React phổ biến cho phát triển ứng dụng",
-        duration: "16h",
-        price: "350.000đ",
-        originalPrice: "3.500.000đ",
+        duration: 16,
+        price: 350000,
+        originalPrice: 3500000,
         link: "/p/nextjs-from-basics-to-advanced",
-        image: urlImageCourse['nextjs']
+        image: urlImageCourse['nextjs'],
+        categories: ["nextjs", "react", "web development"]
     },
     {
         title: "Làm Chủ React.js Hoàn Toàn",
         description: "Học cách xây dựng ứng dụng web động và tương tác với React.js - Thư viện JavaScript phổ biến cho phát triển giao diện người dùng",
-        duration: "18h",
-        price: "350.000đ",
-        originalPrice: "3.500.000đ",
+        duration: 18,
+        price: 350000,
+        originalPrice: 3500000,
         link: "/p/react-js-mastery",
-        image: urlImageCourse['react-ts']
+        image: urlImageCourse['react-ts'],
+        categories: ["react", "javascript", "web development"]
     },
-
 ];

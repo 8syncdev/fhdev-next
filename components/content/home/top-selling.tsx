@@ -6,13 +6,15 @@ import { urlImageCourse, urlImageCourseDetails } from '@/seo';
 export interface Course {
     title: string;
     description: string;
-    duration: string;
-    price: string;
-    originalPrice?: string;
+    duration: number;
+    price: number;
+    originalPrice?: number;
     image: string;
     link: string;
     categories?: string[];
 }
+
+
 
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
     <div className="border border-blue-900 transition-colors duration-200 ease-in-out overflow-hidden rounded-lg relative max-w-[350px]">

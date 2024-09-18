@@ -5,9 +5,10 @@ interface BlurDecoProps {
     color?: string;
     size?: 'small' | 'medium' | 'large';
     variant?: 'default' | 'vibrant' | 'pastel' | 'gradient';
+    zIndex?: number;
 }
 
-const BlurDeco: React.FC<BlurDecoProps> = ({ brightness = 20, color = 'violet', size = 'medium', variant = 'default' }) => {
+const BlurDeco: React.FC<BlurDecoProps> = ({ brightness = 20, color = 'violet', size = 'medium', variant = 'default', zIndex = -50 }) => {
     const getSizeStyles = () => {
         switch (size) {
             case 'large':
@@ -92,7 +93,7 @@ const BlurDeco: React.FC<BlurDecoProps> = ({ brightness = 20, color = 'violet', 
     };
 
     return (
-        <div className='relative -z-50'>
+        <div className='relative' style={{ zIndex }}>
             <div className="flex flex-row justify-center">
                 {variant === 'gradient' ? (
                     <div className="flex flex-row w-1/2">
