@@ -2,7 +2,7 @@ import { CoursesResponse } from "@/server/course.type";
 
 export const getCoursesData: CoursesResponse[] = [
   {
-    count: 20,
+    count: 30,
     next: "http://127.0.0.1:8000/api/course?page=2&page_size=10",
     previous: null,
     results: [
@@ -129,8 +129,8 @@ export const getCoursesData: CoursesResponse[] = [
     ],
   },
   {
-    count: 20,
-    next: null,
+    count: 30,
+    next: "http://127.0.0.1:8000/api/course?page=3&page_size=10",
     previous: "http://127.0.0.1:8000/api/course?page_size=10",
     results: [
       {
@@ -253,6 +253,13 @@ export const getCoursesData: CoursesResponse[] = [
         categories: ["programming_languages", "frontend", "web_frameworks"],
         originalPrice: 350000,
       },
+    ],
+  },
+  {
+    count: 30,
+    next: null,
+    previous: "http://127.0.0.1:8000/api/course?page=2&page_size=10",
+    results: [
       {
         title: "Khóa học C cho người mới bắt đầu",
         description:
