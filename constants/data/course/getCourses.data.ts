@@ -253,6 +253,118 @@ export const getCoursesData: CoursesResponse[] = [
         categories: ["programming_languages", "frontend", "web_frameworks"],
         originalPrice: 350000,
       },
+      {
+        title: "Khóa học C cho người mới bắt đầu",
+        description:
+          "Khóa học C này dành cho những ai mới bắt đầu, giúp bạn nắm vững các khái niệm cơ bản và nâng cao của ngôn ngữ lập trình C.",
+        duration: 92,
+        price: 750000 / 2,
+        image: "",
+        link: "/course/21",
+        categories: ["programming_languages"],
+        originalPrice: 750000,
+      },
+      {
+        title: "Khóa Học Lập Trình Thi Đấu",
+        description:
+          "Khóa học này trang bị cho bạn các kỹ năng và chiến lược cần thiết để tham gia các cuộc thi lập trình, từ các cấu trúc dữ liệu cơ bản đến thuật toán phức tạp, và phát triển kỹ năng giải quyết vấn đề một cách toàn diện.",
+        duration: 71,
+        price: 1500000 / 2,
+        image: "",
+        link: "/course/22",
+        categories: ["software_engineering"],
+        originalPrice: 1500000,
+      },
+      {
+        title: "Khóa học Trí tuệ nhân tạo (AI) cho người mới bắt đầu",
+        description:
+          "Khóa học này cung cấp kiến thức cơ bản và nâng cao về trí tuệ nhân tạo, giúp bạn xây dựng nền tảng vững chắc trong lĩnh vực AI.",
+        duration: 66,
+        price: 1500000 / 2,
+        image: "",
+        link: "/course/23",
+        categories: ["ai", "python"],
+        originalPrice: 1500000,
+      },
+      {
+        title:
+          "Khóa học Phân tích Dữ liệu (Data Analysis) cho người mới bắt đầu",
+        description:
+          "Khóa học này cung cấp kiến thức cơ bản và nâng cao về phân tích dữ liệu, giúp bạn xây dựng nền tảng vững chắc trong lĩnh vực Data Analysis.",
+        duration: 70,
+        price: 1200000 / 2,
+        image: "",
+        link: "/course/24",
+        categories: ["database", "software_engineering"],
+        originalPrice: 1200000,
+      },
+      {
+        title:
+          "Khóa học Kỹ thuật Dữ liệu (Data Engineering) cho người mới bắt đầu",
+        description:
+          "Khóa học này cung cấp kiến thức cơ bản và nâng cao về kỹ thuật dữ liệu, giúp bạn xây dựng nền tảng vững chắc trong lĩnh vực Data Engineering.",
+        duration: 68,
+        price: 1700000 / 2,
+        image: "",
+        link: "/course/25",
+        categories: ["data_science"],
+        originalPrice: 1700000,
+      },
+      {
+        title: "Khóa học Khoa học Dữ liệu (Data Science) cho người mới bắt đầu",
+        description:
+          "Khóa học này cung cấp kiến thức cơ bản và nâng cao về khoa học dữ liệu, giúp bạn xây dựng nền tảng vững chắc trong lĩnh vực Data Science.",
+        duration: 74,
+        price: 2000000 / 2,
+        image: "",
+        link: "/course/26",
+        categories: ["data_science"],
+        originalPrice: 2000000,
+      },
+      {
+        title: "Khóa học Lập trình Game Unity 2D",
+        description:
+          "Khóa học này cung cấp kiến thức cơ bản và nâng cao về lập trình game 2D sử dụng Unity, giúp bạn xây dựng nền tảng vững chắc trong lĩnh vực phát triển game.",
+        duration: 92,
+        price: 1500000 / 2,
+        image: "",
+        link: "/course/27",
+        categories: ["programming_languages", "game_development"],
+        originalPrice: 1500000,
+      },
+      {
+        title: "Khóa học Lập trình Game Unity 3D",
+        description:
+          "Khóa học này cung cấp kiến thức cơ bản và nâng cao về lập trình game 3D sử dụng Unity, giúp bạn xây dựng nền tảng vững chắc trong lĩnh vực phát triển game.",
+        duration: 160,
+        price: 2500000 / 2,
+        image: "",
+        link: "/course/28",
+        categories: ["programming_languages", "game_development"],
+        originalPrice: 2500000,
+      },
+      {
+        title: "LẬP TRÌNH DỰ ÁN THỰC CHIẾN ASP.NET & React",
+        description:
+          "Khóa học lập trình ASP.NET từ cơ bản đến nâng cao, trang bị cho bạn các kỹ năng thực chiến.",
+        duration: 195,
+        price: 15000000 / 2,
+        image: "",
+        link: "/course/29",
+        categories: ["web_frameworks", "backend"],
+        originalPrice: 15000000,
+      },
+      {
+        title: "LẬP TRÌNH DỰ ÁN THỰC CHIẾN TECH-STACK JAVA",
+        description:
+          "Khóa học lập trình Java từ cơ bản đến nâng cao, trang bị cho bạn các kỹ năng thực chiến.",
+        duration: 195,
+        price: 15000000 / 2,
+        image: "",
+        link: "/course/30",
+        categories: ["programming_languages", "backend"],
+        originalPrice: 15000000,
+      },
     ],
   },
 ];
