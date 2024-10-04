@@ -1,12 +1,12 @@
-import { CourseIndex } from '@/components/content/course'
+import { CourseMain } from '@/components/content/course'
 import React from 'react'
 
-const page = () => {
+const CoursePage = () => {
   return (
-    <div>
-      <CourseIndex />
-    </div>
+    <>
+      <CourseMain />
+    </>
   )
 }
 
-export default page
+export default CoursePage

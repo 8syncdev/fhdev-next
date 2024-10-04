@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { StarSvg } from '@/components/svg';
+import { StarSvg } from '@/components/shared/svg';
 import Link from 'next/link';
 
 interface Review {

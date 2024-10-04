@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { BlurDeco } from '@/components/shared';
 import { featureIcon1, featureIcon2, featureIcon3, featureIcon4, featureIcon5 } from '@/constants/image';
-import { ClockSvg, VideoSvg, WrenchSvg, GlobeSvg, UsersSvg } from '@/components/svg';
+import { ClockSvg, VideoSvg, WrenchSvg, GlobeSvg, UsersSvg } from '@/components/shared/svg';
 
 interface FeatureIconProps {
     children: React.ReactNode;

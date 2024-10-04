@@ -6,7 +6,7 @@ import {
     arrowIcon
 } from '@/constants'
 import Image from 'next/image'
-import { ArrowSvg } from '@/components/svg'
+import { ArrowSvg } from '@/components/shared/svg'
 
 
 

@@ -1,7 +1,5 @@
-import CourseIndex from "./main"
-import CourseDetail from "./slug"
-export {
-    CourseIndex,
-    CourseDetail
-}
+import CourseMain from "./main"
 
+export {
+    CourseMain
+}

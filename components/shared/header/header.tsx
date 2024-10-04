@@ -47,17 +47,17 @@ interface HeaderProps {
 }
 
 const defaultNavItems: NavItemProps[] = [
-  { href: '/course', label: 'Courses' },
-  { href: '/p/learning-paths', label: 'Learning Paths' },
-  { href: '/p/contact', label: 'Contact' },
+  { href: '/course', label: 'Khóa Học' },
+  { href: '/roadmap', label: 'Lộ Trình' },
+  { href: '/contact', label: 'Liên Hệ' },
 ]
 
 const Header: React.FC<HeaderProps> = ({ navItems = defaultNavItems }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="w-full bg-transparent sticky top-0 z-[1000] backdrop-blur-md">
-      <div className="2xl:max-w-7xl mx-auto px-3 lg:px-6 py-3">
+    <header className="bg-transparent sticky top-0 z-[1000] backdrop-blur-md flex-grow container mx-auto">
+      <div className="py-3">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex-shrink-0 flex items-center mr-10 lg:mr-14">
             <Link href="/" aria-label={brand.name} className=''>

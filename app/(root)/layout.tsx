@@ -1,5 +1,5 @@
 import React from 'react'
-import BaseLayout from '@/components/layout/base-layout'
+import BaseLayout from '@/components/shared/layout/base-layout'
 
 export default function RootLayout({
   children,

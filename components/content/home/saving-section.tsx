@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { CheckIcon, LearningSvg } from '@/components/svg';
+import { CheckIcon, LearningSvg } from '@/components/shared/svg';
 
 interface PriceTagProps {
   price: string;
