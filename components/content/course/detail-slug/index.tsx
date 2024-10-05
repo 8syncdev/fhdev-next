@@ -30,30 +30,6 @@ const CourseHeader: React.FC<{ course: ConstCourseType }> = ({ course }) => (
         <Badge className="mb-2 bg-violet-600 bg-opacity-70">{course.category}</Badge>
         <CardTitle className="text-3xl font-bold mb-4 text-white">{course.nameCourse}</CardTitle>
         <CardDescription className="text-gray-300 mb-6">{course.description}</CardDescription>
-        
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="flex items-center">
-            <Clock className="mr-2 h-5 w-5 text-violet-400" />
-            <span className="text-gray-300">{course.duration} giờ</span>
-          </div>
-          <div className="flex items-center">
-            <DollarSign className="mr-2 h-5 w-5 text-green-400" />
-            <span className="line-through text-gray-400 mr-2">{course.originalPrice}đ</span>
-            <span className="font-bold text-white">{course.price}đ</span>
-          </div>
-          <div className="flex items-center">
-            <Globe className="mr-2 h-5 w-5 text-blue-400" />
-            <span className="text-gray-300">{course.language.join(', ')}</span>
-          </div>
-          <div className="flex items-center">
-            <Star className="mr-2 h-5 w-5 text-yellow-400" />
-            <span className="text-gray-300">{course.rating} / 5</span>
-          </div>
-        </div>
-        
-        <Button className="w-full bg-violet-600 bg-opacity-70 hover:bg-violet-700 hover:bg-opacity-70 transition-colors duration-300">
-          <Bookmark className="mr-2 h-5 w-5" /> Đăng ký ngay
-        </Button>
       </div>
     </CardHeader>
   </Card>
@@ -114,7 +90,32 @@ const CourseDetails: React.FC<{ course: ConstCourseType }> = ({ course }) => (
         <Bookmark className="mr-2 h-6 w-6 text-violet-400" />
         Chi tiết khóa học
       </h2>
+      <h3 className="text-xl font-semibold mb-4 text-white">{course.nameCourse}</h3>
       <div className="space-y-4">
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="flex items-center">
+            <Clock className="mr-2 h-5 w-5 text-violet-400" />
+            <span className="text-gray-300">{course.duration} giờ</span>
+          </div>
+          <div className="flex items-center flex-wrap">
+            <DollarSign className="mr-2 h-5 w-5 text-green-400" />
+            <span className="line-through text-gray-400 mr-2 text-sm">{course.originalPrice}đ</span>
+            <span className="font-bold text-white text-sm">{course.price}đ</span>
+          </div>
+          <div className="flex items-center">
+            <Globe className="mr-2 h-5 w-5 text-blue-400" />
+            <span className="text-gray-300">{course.language.join(', ')}</span>
+          </div>
+          <div className="flex items-center">
+            <Star className="mr-2 h-5 w-5 text-yellow-400" />
+            <span className="text-gray-300">{course.rating} / 5</span>
+          </div>
+        </div>
+        
+        <Button className="w-full bg-violet-600 bg-opacity-70 hover:bg-violet-700 hover:bg-opacity-70 transition-colors duration-300">
+          <Bookmark className="mr-2 h-5 w-5" /> Đăng ký ngay
+        </Button>
+        
         <div>
           <h3 className="text-lg font-semibold mb-2 text-white flex items-center">
             <BookOpen className="mr-2 h-5 w-5 text-blue-400" />
@@ -213,7 +214,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3">
-            <div className=" \top-0 z-10 bg-gray-900 bg-opacity-95 backdrop-blur-sm">
+            <div className="">
               <CourseHeader course={course} />
             </div>
             <CourseContent course={course} />
@@ -222,7 +223,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
           </div>
           
           <div className="lg:w-1/3">
-            <div className="sticky top-0 pt-4">
+            <div className="sticky top-14 pt-4">
               <CourseDetails course={course} />
             </div>
           </div>

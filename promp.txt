@@ -1,0 +1,1 @@
+dùng UI Shadcn, icon của lucid và radix, animation @index.ts @animations.ts , optimize performance code

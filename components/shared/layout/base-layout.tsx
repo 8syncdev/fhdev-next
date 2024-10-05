@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 import { Footer, Header } from '@/components/shared'
 import { bgImg } from '@/constants'
 import Image from 'next/image'
-import { GalaxyBackground } from '../../dev'
+import BreadcrumbProvider from '../shadcn/breadcrumb'
 
 
 
@@ -17,8 +17,8 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({ children, className }) => {
     <>
       {/* <div className={cn('min-h-screen flex flex-col bg-background/5 relative', className)}> */}
       <div className={cn('min-h-screen flex flex-col relative', className)}>
-        <GalaxyBackground zIndex={-11} />
         <Header />
+        <BreadcrumbProvider />
         <Image
           src={bgImg.src}
           alt="background"

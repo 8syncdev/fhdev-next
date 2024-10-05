@@ -5,7 +5,7 @@ import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { allCourses } from '@/constants/seo/course';
 import { ConstCourseType } from '@/constants/seo/course/type';
-import { MotionDiv, navVariants, slideIn } from '@/components/shared/hoc';
+import { MotionDiv, navVariants, fadeIn, staggerContainer } from '@/components/shared/hoc';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -21,8 +21,16 @@ export interface Course {
     category: string;
 }
 
-const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
-    <MotionDiv variants={slideIn({ direction: 'up' })} initial="hidden" animate="show" className="h-full">
+const CourseCard: React.FC<{ course: Course; index: number }> = ({ course, index }) => (
+    <MotionDiv
+        variants={fadeIn({
+            direction: 'up', type: 'spring', delay: index * 0.1, duration: 0.75
+        })}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        className="h-full"
+    >
         <Card className="overflow-hidden max-w-[350px] bg-transparent border-blue-900 flex flex-col h-full">
             <div className="h-[196px] relative">
                 <Link href={`/course/${course.slug}`} className="relative w-full h-full inline-block">
@@ -43,7 +51,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
                         {course.nameCourse}
                     </Link>
                 </CardTitle>
-                <CardDescription className="text-white">{course.description}</CardDescription>
+                <CardDescription className="text-white line-clamp-4">{course.description}</CardDescription>
             </CardHeader>
             <CardFooter>
                 <p className="font-bold text-white mb-0" data-testid="price">
@@ -60,11 +68,17 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
 );
 
 const CourseList: React.FC<{ courses: Course[] }> = ({ courses }) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+    <MotionDiv
+        variants={staggerContainer({ staggerChildren: 0.1, delayChildren: 0.1 })}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10"
+    >
         {courses.map((course, index) => (
-            <CourseCard key={index} course={course} />
+            <CourseCard key={index} course={course} index={index} />
         ))}
-    </div>
+    </MotionDiv>
 );
 
 const TopSellingSection: React.FC = () => {
@@ -74,7 +88,12 @@ const TopSellingSection: React.FC = () => {
     }));
 
     return (
-        <MotionDiv variants={navVariants()} initial="hidden" animate="show">
+        <MotionDiv
+            variants={navVariants()}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+        >
             <section className="flex flex-col mb-10 my-5">
                 <header className="my-12 mb-6 text-center">
                     <p className="font-medium my-4 text-violet-500 text-sm tracking-widest uppercase">Các Khóa Học Bán Chạy Nhất</p>

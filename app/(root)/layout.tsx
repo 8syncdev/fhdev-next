@@ -1,5 +1,7 @@
 import React from 'react'
 import BaseLayout from '@/components/shared/layout/base-layout'
+import { SceneTransitionProvider } from '@/components/shared/hoc'
+import { GalaxyBackground } from '@/components/dev'
 
 export default function RootLayout({
   children,
@@ -7,8 +9,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <BaseLayout>
-      {children}
-    </BaseLayout>
+    <>
+      <GalaxyBackground />
+      <SceneTransitionProvider>
+        <BaseLayout>
+          {children}
+        </BaseLayout>
+      </SceneTransitionProvider>
+    </>
   )
 }

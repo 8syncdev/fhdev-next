@@ -1,8 +1,14 @@
-import React from 'react';
+'use client'
+
+import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { BlurDeco } from '@/components/shared';
 import { featureIcon1, featureIcon2, featureIcon3, featureIcon4, featureIcon5 } from '@/constants/image';
-import { ClockSvg, VideoSvg, WrenchSvg, GlobeSvg, UsersSvg } from '@/components/shared/svg';
+import { Clock, Video, Wrench, Globe, Users } from 'lucide-react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { MotionDiv } from '@/components/shared/hoc';
+import { fadeIn, staggerContainer } from '@/components/shared/hoc/motion/animations';
 
 interface FeatureIconProps {
     children: React.ReactNode;
@@ -10,13 +16,15 @@ interface FeatureIconProps {
     iconColor?: string;
 }
 
-const FeatureIcon: React.FC<FeatureIconProps> = ({ children, bgColor = 'bg-blue-800', iconColor = 'text-violet-60' }) => (
+const FeatureIcon: React.FC<FeatureIconProps> = React.memo(({ children, bgColor = 'bg-blue-800', iconColor = 'text-violet-60' }) => (
     <div className={`grid place-items-center w-12 h-12 rounded-full my-3 ${bgColor}`}>
         <div className={iconColor}>
             {children}
         </div>
     </div>
-);
+));
+
+FeatureIcon.displayName = 'FeatureIcon';
 
 interface FeatureTextProps {
     title: string;
@@ -25,13 +33,15 @@ interface FeatureTextProps {
     titleColor?: string;
 }
 
-const FeatureText: React.FC<FeatureTextProps> = ({ title, subtitle, description, titleColor = 'text-violet-60' }) => (
+const FeatureText: React.FC<FeatureTextProps> = React.memo(({ title, subtitle, description, titleColor = 'text-violet-60' }) => (
     <>
-        <span className={`${titleColor} mb-3 inline-block font-medium md:font-semibold`}>{title}</span>
+        <Badge variant="secondary" className={`mb-3 ${titleColor}`}>{title}</Badge>
         <h2 className="text-3xl mb-3 text-white">{subtitle}</h2>
-        <p>{description}</p>
+        <p className="text-gray-300">{description}</p>
     </>
-);
+));
+
+FeatureText.displayName = 'FeatureText';
 
 interface FeatureImageProps {
     src: string;
@@ -41,7 +51,7 @@ interface FeatureImageProps {
     className?: string;
 }
 
-const FeatureImage: React.FC<FeatureImageProps> = ({ src, alt, width, height, className }) => (
+const FeatureImage: React.FC<FeatureImageProps> = React.memo(({ src, alt, width, height, className }) => (
     <div className="flex justify-center">
         <Image
             src={src}
@@ -51,10 +61,12 @@ const FeatureImage: React.FC<FeatureImageProps> = ({ src, alt, width, height, cl
             className={className}
         />
     </div>
-);
+));
+
+FeatureImage.displayName = 'FeatureImage';
 
 interface Feature {
-    icon: (iconColor: string) => React.ReactNode;
+    icon: React.ReactNode;
     title: string;
     subtitle: string;
     description: string;
@@ -65,27 +77,40 @@ interface Feature {
         height: number;
         className?: string;
     };
-    iconBgColor?: string;
-    iconColor?: string;
-    titleColor?: string;
-    reverse?: boolean;
+    iconBgColor: string;
+    iconColor: string;
+    titleColor: string;
+    reverse: boolean;
 }
 
 interface FeatureItemProps {
     feature: Feature;
+    index: number;
 }
 
-const FeatureItem: React.FC<FeatureItemProps> = ({ feature }) => (
-    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 my-10 items-center ${feature.reverse ? 'md:flex-row-reverse' : ''}`}>
-        <div className="md:mx-4">
-            <FeatureIcon bgColor={feature.iconBgColor} iconColor={feature.iconColor}>{feature.icon(feature.iconColor || '')}</FeatureIcon>
-            <FeatureText title={feature.title} subtitle={feature.subtitle} description={feature.description} titleColor={feature.titleColor} />
+const FeatureItem: React.FC<FeatureItemProps> = React.memo(({ feature, index }) => (
+    <MotionDiv
+        variants={fadeIn({ direction: 'up', type: 'tween', delay: 0.2 * index, duration: 0.7 })}
+        whileInView="show"
+        initial="hidden"
+        viewport={{ once: true }}
+        className={`grid grid-cols-1 md:grid-cols-2 gap-8 my-10 items-center ${feature.reverse ? 'md:flex-row-reverse' : ''}`}
+    >
+        <div>
+            <Card className="bg-transparent border-blue-900">
+                <CardContent className="p-6">
+                    <FeatureIcon bgColor={feature.iconBgColor} iconColor={feature.iconColor}>{feature.icon}</FeatureIcon>
+                    <FeatureText title={feature.title} subtitle={feature.subtitle} description={feature.description} titleColor={feature.titleColor} />
+                </CardContent>
+            </Card>
         </div>
         <div className={feature.reverse ? 'md:order-first' : ''}>
             <FeatureImage {...feature.image} />
         </div>
-    </div>
-);
+    </MotionDiv>
+));
+
+FeatureItem.displayName = 'FeatureItem';
 
 interface FeaturesSectionProps {
     features: Feature[];
@@ -95,7 +120,7 @@ interface FeaturesSectionProps {
 
 export const features: Feature[] = [
     {
-        icon: (iconColor: string) => <ClockSvg className={iconColor} />,
+        icon: <Clock className="text-purple-500" size={24} />,
         title: "Đẩy nhanh quá trình học tập của bạn",
         subtitle: "Không có thông tin thừa, chỉ có những điều cần thiết!",
         description: "Khóa học của mình đi thẳng vào trọng tâm, không lan man. Bạn sẽ học những kiến thức thiết yếu, được giải thích đơn giản và dễ hiểu. Không có thuật ngữ phức tạp, chỉ có những gì bạn thực sự cần để thành công trong lập trình.",
@@ -108,10 +133,11 @@ export const features: Feature[] = [
         },
         iconBgColor: "bg-purple-800/20",
         iconColor: "text-purple-500",
-        titleColor: "text-purple-400"
+        titleColor: "text-purple-400",
+        reverse: false
     },
     {
-        icon: (iconColor: string) => <VideoSvg className={iconColor} />,
+        icon: <Video className="text-pink-500" size={24} />,
         title: "Bài học từng bước",
         subtitle: "Bài học dễ theo dõi",
         description: "Mình biết việc học lập trình có thể khó khăn. Vì vậy, mình đã cẩn thận tổ chức các khóa học của mình thành những phần nhỏ, đơn giản để giúp bạn tiến bộ một cách suôn sẻ, từng bước một. Mình sẽ hướng dẫn bạn qua từng bước để bạn không cảm thấy quá tải.",
@@ -128,7 +154,7 @@ export const features: Feature[] = [
         reverse: true
     },
     {
-        icon: (iconColor: string) => <WrenchSvg className={iconColor} />,
+        icon: <Wrench className="text-green-500" size={24} />,
         title: "Học thực hành",
         subtitle: "Kết hợp hoàn hảo giữa lý thuyết và thực hành",
         description: "Mình tin rằng cách học tốt nhất là thông qua thực hành. Đó là lý do tại sao các khóa học của mình dạy bạn lý thuyết cần thiết và cung cấp các bài tập thực hành. Bạn sẽ có cơ hội thực hành mọi thứ bạn học và áp dụng vào các tình huống thực tế.",
@@ -141,10 +167,11 @@ export const features: Feature[] = [
         },
         iconBgColor: "bg-green-800/20",
         iconColor: "text-green-500",
-        titleColor: "text-green-400"
+        titleColor: "text-green-400",
+        reverse: false
     },
     {
-        icon: (iconColor: string) => <GlobeSvg className={iconColor} />,
+        icon: <Globe className="text-yellow-400" size={24} />,
         title: "Chuẩn bị cho việc làm",
         subtitle: "Dự án thực tế",
         description: "Khóa học của mình được thiết kế để chuẩn bị bạn cho việc làm thực tế và phỏng vấn. Với các khóa học sâu sắc, đầy đủ và được đóng gói với các ví dụ và bài tập thực tế, bạn sẽ sẵn sàng đối mặt với bất kỳ thách thức nào.",
@@ -161,7 +188,7 @@ export const features: Feature[] = [
         reverse: true
     },
     {
-        icon: (iconColor: string) => <UsersSvg className={iconColor} />,
+        icon: <Users className="text-cyan-400" size={24} />,
         title: "Từ người mới bắt đầu đến người chuyên nghiệp",
         subtitle: "Khóa học cho mọi người",
         description: "Dù bạn là người mới bắt đầu hay đã có kinh nghiệm, mình đều có khóa học phù hợp với bạn. Mình cung cấp nhiều khóa học để bạn có thể chọn lựa những khóa học phù hợp với bạn. Hơn nữa, mình đảm bảo khóa học của mình sẽ thú vị và không khiến bạn chán ngán.",
@@ -179,21 +206,29 @@ export const features: Feature[] = [
     },
 ];
 
-const FeaturesSection: React.FC<FeaturesSectionProps> = ({ features, sectionTitle = 'Đặc điểm nổi bật', sectionSubtitle = 'Tại sao học lập trình với mình?' }) => {
+const FeaturesSection: React.FC<FeaturesSectionProps> = React.memo(({ features, sectionTitle = 'Đặc điểm nổi bật', sectionSubtitle = 'Tại sao học lập trình với mình?' }) => {
     return (
-        <section className="flex flex-col mb-10 my-5 relative">
+        <MotionDiv
+            variants={staggerContainer()}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+            className="flex flex-col mb-10 my-5 relative"
+        >
             <BlurDeco brightness={10} variant='gradient' />
-            <div className="my-12 mb-6 text-center">
-                <p className="font-medium my-4 text-violet-500 dark:text-violet-75 text-sm tracking-widest uppercase">{sectionTitle}</p>
-                <h2 className="text-3xl">{sectionSubtitle}</h2>
-            </div>
+            <MotionDiv variants={fadeIn({ direction: 'up', type: 'tween', delay: 0.2, duration: 1 })} className="my-12 mb-6 text-center">
+                <Badge variant="secondary" className="font-medium my-4 text-violet-500 text-sm tracking-widest uppercase">{sectionTitle}</Badge>
+                <h2 className="text-3xl text-white">{sectionSubtitle}</h2>
+            </MotionDiv>
             <div className="container">
                 {features.map((feature, index) => (
-                    <FeatureItem key={index} feature={feature} />
+                    <FeatureItem key={index} feature={feature} index={index} />
                 ))}
             </div>
-        </section>
+        </MotionDiv>
     );
-};
+});
+
+FeaturesSection.displayName = 'FeaturesSection';
 
 export default FeaturesSection;

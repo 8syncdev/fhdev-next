@@ -1,0 +1,12 @@
+.text-neon {
+    line-height: 80%;
+    text-transform: uppercase;
+    color: #fff;
+    position: relative;
+    text-shadow: 0 0 5px #fff,
+        0 0 2.5px #fff,
+        0 0 5px #fff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 30px #0ff;
+}
