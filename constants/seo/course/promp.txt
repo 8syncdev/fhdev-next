@@ -1,0 +1,1 @@
+ghi vào thay thế duration, description, whyChoose, còn lại giữ nguyên

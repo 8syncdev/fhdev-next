@@ -1,15 +1,16 @@
+import { pytorchImg } from "@/constants/image";
 import { urlImageCourse } from "../../firebase";
 import { ConstCourseType } from "../type";
 
 const courseAI: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
-  originalPrice: 3000000,
-  price: 1500000,
+  originalPrice: 5500000,
+  price: 2500000,
   duration: 66, // Thời lượng đã được cập nhật
   language: ["python"],
   slug: "course-ai",
-  imgSrc: urlImageCourse['python'],
+  imgSrc: pytorchImg,
   category: "data",
   // Course detail
   nameCourse: "Khóa học Trí tuệ nhân tạo (AI) cho người mới bắt đầu",

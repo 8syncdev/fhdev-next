@@ -18,7 +18,6 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({ children, className }) => {
       {/* <div className={cn('min-h-screen flex flex-col bg-background/5 relative', className)}> */}
       <div className={cn('min-h-screen flex flex-col relative', className)}>
         <Header />
-        <BreadcrumbProvider />
         <Image
           src={bgImg.src}
           alt="background"
@@ -28,7 +27,10 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({ children, className }) => {
           className="absolute -top- -z-10"
           style={{ color: 'transparent' }}
         />
-        <main className="flex-grow container">
+        <main className="flex-grow container relative">
+          <div className='sticky top-16 z-50'>
+            <BreadcrumbProvider />
+          </div>
           {children}
         </main>
         <Footer />

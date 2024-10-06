@@ -5,7 +5,7 @@ import { urlImageCourse } from "../../firebase";
 const courseASPReact: ConstCourseType = {
   rating: 4.8,
   originalPrice: 20000000,
-  price: 15000000,
+  price: 12000000,
   duration: 195,
   language: ["c#", "typescript", "javascript"],
   slug: "lap-trinh-du-an-thuc-chien",

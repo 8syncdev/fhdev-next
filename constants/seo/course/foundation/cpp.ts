@@ -4,9 +4,9 @@ import { ConstCourseType } from "../type";
 const courseCppBeginner: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
-  originalPrice: 1200000,
-  price: 600000,
-  duration: 118, // Thời lượng đã được cập nhật
+  originalPrice: 5500000,
+  price: 2500000,
+  duration: 118,
   language: ["cpp"],
   slug: "course-cpp-beginner",
   imgSrc: urlImageCourse['cpp'],
@@ -14,7 +14,7 @@ const courseCppBeginner: ConstCourseType = {
   // Course detail
   nameCourse: "Khóa học C++ cho người mới bắt đầu",
   description:
-    "Khóa học C++ này dành cho những ai mới bắt đầu, giúp bạn nắm vững các khái niệm cơ bản và nâng cao của ngôn ngữ lập trình C++.",
+    "Khóa học C++ này dành cho những ai mới bắt đầu, giúp bạn nắm vững các khái niệm cơ bản và nâng cao của ngôn ngữ lập trình C++. Bao gồm các kiến thức cơ bản như vòng lặp, for, hàm cho đến nâng cao con trỏ, string, struct. Ngoài ra, nội dung còn có thư viện STL như vector, set, map, thuật toán tìm kiếm, sắp xếp, ngăn xếp, hàng đợi, OOP.",
   tags: ["C++", "Lập trình", "Người mới bắt đầu"],
   newest: true,
   popular: true,
@@ -41,10 +41,13 @@ const courseCppBeginner: ConstCourseType = {
       "Lập trình viên muốn củng cố kiến thức cơ bản về ngôn ngữ C++",
     ],
     whyChoose: [
-      "Khóa học được thiết kế cho người mới bắt đầu với ngôn ngữ dễ hiểu",
-      "Bài giảng chi tiết và có nhiều ví dụ minh họa thực tế",
-      "Giảng viên giàu kinh nghiệm và nhiệt tình",
-      "Hỗ trợ từ cộng đồng học viên và giảng viên",
+      "100% giảng viên, trợ giảng đạt giải lập trình cấp tỉnh, quốc gia",
+      "Hệ thống website chấm bài tự động, xếp hạng, đo lường từng bài tập",
+      "Số lượng bài tập lên tới 600-800 bài",
+      "Tài liệu biên soạn chuyên sâu xem trước",
+      "Hỗ trợ giải đáp thắc mắc của học viên 24/7",
+      "Kiểm tra, sửa chữa từng dòng code cho học viên",
+      "Video xem lại sau mỗi buổi học",
     ],
   },
   lessons: [

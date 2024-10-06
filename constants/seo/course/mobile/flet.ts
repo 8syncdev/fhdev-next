@@ -1,14 +1,15 @@
 import { ConstCourseType } from "../type";
 import { urlImageCourse } from "../../firebase";
+import { fletImg } from "@/constants/image";
 const courseMobileFletPython: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
-  originalPrice: 2500000,
-  price: 1250000,
+  originalPrice: 5500000,
+  price: 2500000,
   duration: 45, // Total duration 45 hours
   language: ["python"],
   slug: "course-mobile-flet-python",
-  imgSrc: urlImageCourse['python'],
+  imgSrc: fletImg,
   category: "mobile",
   // Course detail
   nameCourse: "Khóa học Phát triển ứng dụng di động với Flet và Python",

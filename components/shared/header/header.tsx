@@ -35,8 +35,8 @@ const Nav: React.FC<NavProps> = ({ items, isMobile = false }) => (
       <NavItem key={index} {...item} />
     ))}
     <li>
-      <Link href="https://codewithmosh.teachable.com/sign_in" className={cn("block px-4 py-2 text-sm lg:text-base text-white bg-violet-500 hover:bg-violet-400 rounded-3xl transition-colors duration-300")}>
-        Member Area
+      <Link href="/course" className={cn("block px-4 py-2 text-sm lg:text-base text-white bg-violet-500 hover:bg-violet-400 rounded-3xl transition-colors duration-300")}>
+        Tham gia ngay
       </Link>
     </li>
   </ul>
@@ -48,8 +48,8 @@ interface HeaderProps {
 
 const defaultNavItems: NavItemProps[] = [
   { href: '/course', label: 'Khóa Học' },
-  { href: '/roadmap', label: 'Lộ Trình' },
-  { href: '/contact', label: 'Liên Hệ' },
+  { href: '/#', label: 'Lộ Trình' },
+  { href: '/#', label: 'Liên Hệ' },
 ]
 
 const Header: React.FC<HeaderProps> = ({ navItems = defaultNavItems }) => {

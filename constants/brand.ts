@@ -26,6 +26,7 @@ export const brand = {
         youtube: '',
         tiktok: '',
         website: '',
+        phone: '00000000'
     },
     name: 'Fullhouse Dev',
     logo: seologoImg,

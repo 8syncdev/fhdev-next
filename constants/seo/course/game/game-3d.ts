@@ -4,7 +4,7 @@ import { urlImageCourse } from "../../firebase";
 const courseUnity3DGame: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
-  originalPrice: 5000000,
+  originalPrice: 5500000,
   price: 2500000,
   duration: 160, // Updated total duration 160 hours
   language: ["c#"],

@@ -5,7 +5,7 @@ const courseDjangoDRF_BE: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
   originalPrice: 20000000,
-  price: 9500000,
+  price: 7000000,
   duration: 70 * 2.25, // Trung bình mỗi buổi 2.25 giờ
   language: ["python"],
   slug: "course-django-drf-be",

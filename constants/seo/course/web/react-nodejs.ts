@@ -5,15 +5,15 @@ import { urlImageCourse } from "../../firebase";
 const courseNodeReact: ConstCourseType = {
   rating: 4.8,
   originalPrice: 20000000,
-  price: 15000000,
-  duration: 195,
+  price: 12000000,
+  duration: 180,
   language: ["typescript", "javascript"],
   slug: "lap-trinh-du-an-thuc-chien-nodejs-mern",
-  imgSrc: urlImageCourse['react-ts'],
+  imgSrc: urlImageCourse['nodejs'],
   category: "web",
   nameCourse: "LẬP TRÌNH DỰ ÁN THỰC CHIẾN TECH-STACK NODEJS & MERN",
   description:
-    "Khóa học lập trình NodeJS và MERN từ cơ bản đến nâng cao, trang bị cho bạn các kỹ năng thực chiến.",
+    "Khóa học tìm hiểu NoSQL và MongoDB, tạo Database, các kiến thức về NodeJS như mô hình client-server, tạo ứng dụng NodeJS, kết nối database với backend, xử lý upload, read file, thực hành deploy backend nodejs lên server, hướng dẫn thực hiện và quản lý một dự án thực tế.",
   tags: [
     "NodeJS",
     "MERN",
@@ -50,12 +50,17 @@ const courseNodeReact: ConstCourseType = {
       "Lập trình viên muốn học thêm về phát triển frontend và backend.",
     ],
     whyChoose: [
-      "Khóa học được thiết kế bài bản và chi tiết từ cơ bản đến nâng cao.",
-      "Giảng viên giàu kinh nghiệm và nhiệt tình.",
-      "Nội dung cập nhật và phù hợp với xu hướng hiện nay.",
-      "Hỗ trợ và tư vấn nhiệt tình từ cộng đồng học viên.",
+      "Số lượng buổi học: 60 buổi (2-3 tiếng/ buổi)",
+      "Hoàn thành 4 project",
+      "100% giảng viên, trợ giảng đã và đang làm việc các công ty công nghệ lớn",
+      "Hỗ trợ giải đáp thắc mắc của học viên 24/7",
+      "Tài liệu xem trước buổi học",
+      "Kiểm tra, sửa chữa từng dòng code cho học viên",
+      "Video xem lại sau mỗi buổi học",
+      "Hướng dẫn viết CV xin việc",
     ],
   },
+
   lessons: [
     {
       nameLesson: "Module 1: FE Basic",

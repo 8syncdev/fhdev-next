@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MotionDiv, fadeIn, staggerContainer } from '@/components/shared/hoc'
 import { BlockCode } from '@/components/shared'
+import SlidePicDEV from '@/components/dev/slidepic/slide-pic'
 
 const IntroSection: React.FC = React.memo(() => {
     return (
@@ -34,7 +35,7 @@ const IntroSection: React.FC = React.memo(() => {
             </MotionDiv>
             
             <MotionDiv variants={fadeIn({ direction: 'left', type: 'tween', delay: 0.4, duration: 1 })}>
-                <Card className="bg-transparent border-blue-900">
+                {/* <Card className="bg-transparent border-blue-900">
                     <CardHeader>
                         <CardTitle className="text-white">myInfo</CardTitle>
                     </CardHeader>
@@ -52,7 +53,8 @@ const IntroSection: React.FC = React.memo(() => {
                             }}
                         />
                     </CardContent>
-                </Card>
+                </Card> */}
+                <SlidePicDEV />
             </MotionDiv>
         </MotionDiv>
     )

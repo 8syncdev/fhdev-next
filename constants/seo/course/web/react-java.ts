@@ -4,7 +4,7 @@ import { urlImageCourse } from "../../firebase";
 const courseSpringReact: ConstCourseType = {
   rating: 4.8,
   originalPrice: 20000000,
-  price: 15000000,
+  price: 12000000,
   duration: 195,
   language: ["typescript", "javascript", "java"],
   slug: "lap-trinh-du-an-thuc-chien-java",

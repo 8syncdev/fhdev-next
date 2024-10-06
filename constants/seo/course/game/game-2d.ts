@@ -4,8 +4,8 @@ import { ConstCourseType, Lesson, DetailLesson } from "../type";
 const courseUnity2DGame: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
-  originalPrice: 3000000,
-  price: 1500000,
+  originalPrice: 5500000,
+  price: 2500000,
   duration: 92, // Updated total duration 92 hours
   language: ["c#"],
   slug: "course-unity-2d-game-development",

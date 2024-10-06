@@ -4,16 +4,16 @@ const courseNextJs: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
   originalPrice: 20000000,
-  price: 9500000,
-  duration: 70 * 2.25, // Trung bình mỗi buổi 2.25 giờ
+  price: 6500000,
+  duration: 60 * 2.5, // 60 buổi, mỗi buổi 2-3 tiếng
   language: ["javascript", "typescript"],
   slug: "course-nextjs-fullstack",
   imgSrc: urlImageCourse['nextjs'],
   category: "web",
   // Course detail
-  nameCourse: "Khóa học Next.js từ cơ bản đến nâng cao",
+  nameCourse: "Khóa học React/Next JS từ cơ bản đến nâng cao",
   description:
-    "Khóa học toàn diện về Next.js bao gồm các phiên bản 13, 14, và 15. Ngoài ra, học viên sẽ được học nền tảng HTML, CSS, JavaScript và TypeScript.",
+    "Khóa học cung cấp kiến thức HTML, CSS trong dự án, cách sử dụng responsive, tổng quan về javascript, typescript, xây dựng project Reactjs, hướng dẫn cài đặt như routing, useMemo, useCallback và react memo, sử dụng các thư viện, thực hành làm CRUD với redux, cài đặt và sử dụng react query, thực hiện project cuối khóa (React + NextJS).",
   tags: [
     "Next.js",
     "HTML",
@@ -47,10 +47,13 @@ const courseNextJs: ConstCourseType = {
       "Lập trình viên muốn học thêm về phát triển frontend và backend",
     ],
     whyChoose: [
-      "Khóa học được thiết kế bài bản và chi tiết",
-      "Giảng viên giàu kinh nghiệm và nhiệt tình",
-      "Nội dung cập nhật và phù hợp với xu hướng hiện nay",
-      "Hỗ trợ và tư vấn nhiệt tình từ cộng đồng học viên",
+      "Số lượng buổi học: 60 buổi (2-3 tiếng/ buổi)",
+      "Hoàn thành 4 project",
+      "100% giảng viên, trợ giảng đã và đang làm việc tại các công ty công nghệ lớn",
+      "Hỗ trợ giải đáp thắc mắc của học viên 24/7",
+      "Kiểm tra, sửa chữa từng dòng code cho học viên",
+      "Video xem lại sau mỗi buổi học",
+      "Hướng dẫn viết CV xin việc",
     ],
   },
 

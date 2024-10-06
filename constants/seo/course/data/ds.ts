@@ -1,15 +1,16 @@
+import { tensorflowImg } from "@/constants/image";
 import { urlImageCourse } from "../../firebase";
 import { ConstCourseType } from "../type";
 
 const courseDataScience: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
-  originalPrice: 4000000,
-  price: 2000000,
+  originalPrice: 5500000,
+  price: 2500000,
   duration: 74, // Thời lượng đã được cập nhật
   language: ["python"],
   slug: "course-data-science",
-  imgSrc: urlImageCourse['python'],
+  imgSrc: tensorflowImg,
   category: "data",
   // Course detail
   nameCourse: "Khóa học Khoa học Dữ liệu (Data Science) cho người mới bắt đầu",

@@ -4,17 +4,17 @@ import { urlImageCourse } from "../../firebase";
 const courseDataStructuresAlgorithms: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
-  originalPrice: 2500000,
-  price: 1250000,
-  duration: 100, // Tổng thời lượng 100 giờ
+  originalPrice: 5500000,
+  price: 2500000,
+  duration: 300, // Tổng thời lượng 300 giờ
   language: ["cpp"],
   slug: "course-data-structures-algorithms",
-  imgSrc: urlImageCourse['cpp'],
+  imgSrc: urlImageCourse['dsa'],
   category: "foundation",
   // Course detail
   nameCourse: "Khóa học Cấu trúc dữ liệu và Giải thuật cho người mới bắt đầu",
   description:
-    "Khóa học này giúp bạn nắm vững các khái niệm cơ bản và nâng cao của cấu trúc dữ liệu và giải thuật, từ đó xây dựng nền tảng vững chắc trong lập trình.",
+    "Khóa học CTDL&GT giúp bạn nắm vững các khái niệm cơ bản và nâng cao về cấu trúc dữ liệu và giải thuật. Bạn sẽ học cách áp dụng kiến thức vào giải quyết các bài toán thực tế, nâng cao kỹ năng tư duy logic và tối ưu hóa code. Khóa học bao gồm các chủ đề về mảng, danh sách liên kết, ngăn xếp, hàng đợi, cây, đồ thị, và các thuật toán tìm kiếm, sắp xếp.",
   tags: ["Data Structures", "Algorithms", "Programming"],
   newest: true,
   popular: true,
@@ -41,10 +41,19 @@ const courseDataStructuresAlgorithms: ConstCourseType = {
       "Người muốn tham gia các cuộc thi lập trình",
     ],
     whyChoose: [
-      "Khóa học được thiết kế bài bản và chi tiết",
-      "Giảng viên giàu kinh nghiệm và nhiệt tình",
-      "Nội dung cập nhật và phù hợp với xu hướng hiện nay",
-      "Hỗ trợ và tư vấn nhiệt tình từ cộng đồng học viên",
+      "Giảng viên có nhiều năm kinh nghiệm giảng dạy và làm việc thực tế",
+      "Nội dung khóa học được cập nhật liên tục, bám sát xu hướng công nghệ",
+      "Học viên được thực hành qua nhiều bài tập và dự án thực tế",
+      "Hỗ trợ 1-1 từ giảng viên và cộng đồng học viên",
+      "Chứng chỉ sau khi hoàn thành khóa học",
+      "Cơ hội việc làm và thực tập tại các công ty đối tác",
+      "100% giảng viên, trợ giảng đạt giải lập trình cấp tỉnh, quốc gia",
+      "Hệ thống website chấm bài tự động, xếp hạng, đo lường từng bài tập",
+      "Số lượng bài tập lên tới 300-500 bài",
+      "Tài liệu biên soạn chuyên sâu xem trước",
+      "Hỗ trợ giải đáp thắc mắc của học viên 24/7",
+      "Kiểm tra, sửa chữa từng dòng code cho học viên",
+      "Video xem lại sau mỗi buổi học",
     ],
   },
   lessons: [

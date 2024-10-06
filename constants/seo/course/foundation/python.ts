@@ -4,9 +4,9 @@ import { ConstCourseType } from "../type";
 const coursePythonFoundation: ConstCourseType = {
   // Use to filter course
   rating: 4.7,
-  originalPrice: 5000000,
+  originalPrice: 5500000,
   price: 2500000,
-  duration: 96, // Updated total duration 96 hours
+  duration: 108, // Updated to 36-45 sessions * 3 hours/session = 108-135 hours
   language: ["python"],
   slug: "course-python-foundation",
   imgSrc: urlImageCourse['python'],
@@ -14,7 +14,7 @@ const coursePythonFoundation: ConstCourseType = {
   // Course detail
   nameCourse: "Khóa học Python Cơ bản đến Nâng cao",
   description:
-    "Khóa học toàn diện về ngôn ngữ lập trình Python, từ cơ bản đến nâng cao, giúp bạn xây dựng nền tảng vững chắc trong Python.",
+    "Khóa học lập trình Python từ cơ bản đến nâng cao, cung cấp các kiến thức về chuỗi, hàm, các module, file, cơ sở dữ liệu, OOP cơ bản và nâng cao, thực hiện các project, tìm hiểu các framework (Django).",
   tags: ["Python", "Programming", "Software Development"],
   newest: true,
   popular: true,
@@ -41,10 +41,14 @@ const coursePythonFoundation: ConstCourseType = {
       "Người muốn nâng cao kỹ năng lập trình Python của mình",
     ],
     whyChoose: [
-      "Khóa học được thiết kế bài bản và chi tiết",
-      "Giảng viên giàu kinh nghiệm và nhiệt tình",
-      "Nội dung cập nhật và phù hợp với xu hướng hiện nay",
-      "Hỗ trợ và tư vấn nhiệt tình từ cộng đồng học viên",
+      "Số lượng buổi học: 36-45 buổi (2-3 tiếng/ buổi)",
+      "Hoàn thành 8-12 project",
+      "100% giảng viên, trợ giảng đạt giải lập trình cấp tỉnh, quốc gia",
+      "Hỗ trợ giải đáp thắc mắc của học viên 24/7",
+      "Hệ thống website chấm bài tự động, xếp hạng, đo lường từng bài tập",
+      "Số lượng bài tập lên tới 300-500 bài",
+      "Tài liệu biên soạn chuyên sâu xem trước",
+      "Kiểm tra, sửa chữa từng dòng code cho học viên",
     ],
   },
 

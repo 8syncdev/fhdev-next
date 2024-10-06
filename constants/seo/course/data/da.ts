@@ -1,15 +1,16 @@
+import { pandasImg } from "@/constants/image";
 import { urlImageCourse } from "../../firebase";
 import { ConstCourseType } from "../type";
 
 const courseDataAnalysis: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
-  originalPrice: 2500000,
-  price: 1200000,
+  originalPrice: 5500000,
+  price: 2500000,
   duration: 70, // Thời lượng đã được cập nhật
   language: ["python"],
   slug: "course-data-analysis",
-  imgSrc: urlImageCourse['python'],
+  imgSrc: pandasImg,
   category: "data",
   // Course detail
   nameCourse:

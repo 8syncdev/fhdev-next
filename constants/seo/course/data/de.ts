@@ -4,8 +4,8 @@ import { ConstCourseType } from "../type";
 const courseDataEngineering: ConstCourseType = {
   // Use to filter course
   rating: 4.7,
-  originalPrice: 3500000,
-  price: 1700000,
+  originalPrice: 5500000,
+  price: 2500000,
   duration: 68, // Thời lượng đã được cập nhật
   language: ["python"],
   slug: "course-data-engineering",

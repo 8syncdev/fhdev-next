@@ -1,15 +1,16 @@
+import { cImg } from "@/constants/image";
 import { urlImageCourse } from "../../firebase";
 import { ConstCourseType } from "../type";
 
 const courseCBeginner: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
-  originalPrice: 1500000,
-  price: 750000,
+  originalPrice: 5500000,
+  price: 2500000,
   duration: 92, // Thời lượng đã được cập nhật
   language: ["cpp"],
   slug: "course-c-beginner",
-  imgSrc: urlImageCourse['cpp'],
+  imgSrc: cImg,
   category: "foundation",
   // Course detail
   nameCourse: "Khóa học C cho người mới bắt đầu",

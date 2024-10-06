@@ -3,9 +3,9 @@ import { urlImageCourse } from "../../firebase";
 const courseJavaBeginner: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
-  originalPrice: 1500000,
-  price: 750000,
-  duration: 100, // Tổng thời lượng 100 giờ
+  originalPrice: 5500000,
+  price: 2500000,
+  duration: 135, // Tổng thời lượng 135 giờ (45 buổi * 3 tiếng/buổi)
   language: ["java"],
   slug: "course-java-beginner",
   imgSrc: urlImageCourse['java'],
@@ -13,7 +13,7 @@ const courseJavaBeginner: ConstCourseType = {
   // Course detail
   nameCourse: "Khóa học Java cơ bản cho người mới bắt đầu",
   description:
-    "Khóa học Java này dành cho những ai mới bắt đầu, giúp bạn nắm vững các khái niệm cơ bản và nâng cao của ngôn ngữ lập trình Java.",
+    "Khóa học Java này dành cho những ai mới bắt đầu, giúp bạn nắm vững các khái niệm cơ bản và nâng cao của ngôn ngữ lập trình Java. Bao gồm các kiến thức cơ bản về kiểu dữ liệu và biến, mảng, chuỗi, hàm. Cung cấp các kiến thức toàn diện về lớp, đối tượng, gồm tính đóng gói, kế thừa, đa hình, trừu tượng, ngoại lệ, luồng, các chức năng framework (Arrays, Collections).",
   tags: ["Java", "Lập trình", "Người mới bắt đầu"],
   newest: true,
   popular: true,
@@ -40,10 +40,14 @@ const courseJavaBeginner: ConstCourseType = {
       "Người muốn nâng cao kỹ năng lập trình Java của mình",
     ],
     whyChoose: [
-      "Khóa học được thiết kế bài bản và chi tiết",
-      "Giảng viên giàu kinh nghiệm và nhiệt tình",
-      "Nội dung cập nhật và phù hợp với xu hướng hiện nay",
-      "Hỗ trợ và tư vấn nhiệt tình từ cộng đồng học viên",
+      "Số lượng buổi học: 36-45 buổi (2-3 tiếng/ buổi)",
+      "Hoàn thành 8-12 project",
+      "100% giảng viên, trợ giảng đạt giải lập trình cấp tỉnh, quốc gia",
+      "Hệ thống website chấm bài tự động, xếp hạng, đo lường từng bài tập",
+      "Số lượng bài tập lên tới 300-500 bài",
+      "Tài liệu biên soạn chuyên sâu xem trước",
+      "Hỗ trợ giải đáp thắc mắc của học viên 24/7",
+      "Kiểm tra, sửa chữa từng dòng code cho học viên",
     ],
   },
 

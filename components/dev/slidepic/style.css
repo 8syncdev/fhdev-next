@@ -1,0 +1,82 @@
+.slider {
+    position: relative;
+    width: 100%;
+    min-height: 12rem;
+    margin: auto;
+    perspective: 40rem;
+    padding-top: 4rem;
+}
+
+.rotator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 1%;
+    height: 150px;
+    transform-style: preserve-3d;
+    animation: roter 20s linear infinite;
+    transition: all 0.3s ease;
+}
+
+.rotator:hover {
+    animation-play-state: paused;
+    transform: scale(1.05);
+}
+
+@keyframes roter {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.items {
+    position: absolute;
+    height: auto;
+    width: 5rem;
+    overflow: hidden;
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0px rgba(0, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.items:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px 0px rgba(0, 255, 255, 0.8);
+}
+
+.items img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.items span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #0ff;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+/* Khoảng cách giữa các phần tử (12rem) */
+.items:nth-child(1) { transform: rotateY(0deg) translateZ(12rem); }
+.items:nth-child(2) { transform: rotateY(40deg) translateZ(12rem); }
+.items:nth-child(3) { transform: rotateY(80deg) translateZ(12rem); }
+.items:nth-child(4) { transform: rotateY(120deg) translateZ(12rem); }
+.items:nth-child(5) { transform: rotateY(160deg) translateZ(12rem); }
+.items:nth-child(6) { transform: rotateY(200deg) translateZ(12rem); }
+.items:nth-child(7) { transform: rotateY(240deg) translateZ(12rem); }
+.items:nth-child(8) { transform: rotateY(280deg) translateZ(12rem); }
+.items:nth-child(9) { transform: rotateY(320deg) translateZ(12rem); }
+
+/* Để thay đổi khoảng cách giữa các phần tử, hãy điều chỉnh giá trị translateZ */
+/* Ví dụ: translateZ(20rem) sẽ tăng khoảng cách, translateZ(10rem) sẽ giảm khoảng cách */

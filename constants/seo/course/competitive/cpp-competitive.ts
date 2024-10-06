@@ -1,14 +1,15 @@
+import { competitiveImg } from "@/constants/image";
 import { urlImageCourse } from "../../firebase";
 import { ConstCourseType } from "../type";
 
 const competitiveProgrammingCourse: ConstCourseType = {
   rating: 4.5,
-  originalPrice: 2000000,
-  price: 1500000,
+  originalPrice: 5500000,
+  price: 2500000,
   duration: 71,
   language: ["cpp"],
   slug: "lap-trinh-thi-dau",
-  imgSrc: urlImageCourse['cpp'], // Đường dẫn tới ảnh của khóa học
+  imgSrc: competitiveImg, // Đường dẫn tới ảnh của khóa học
   category: "foundation",
   nameCourse: "Khóa Học Lập Trình Thi Đấu",
   description:
