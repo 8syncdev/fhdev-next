@@ -17,6 +17,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast"
 import { sendEmail } from "@/server/actions/email.action";
 import { brand } from '@/constants';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
 const formSchema = z.object({
     courseName: z.string(),
@@ -154,8 +162,8 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }>
                         <Image
                             src={qrcode1Img}
                             alt="QR Code for payment"
-                            width={200}
-                            height={200}
+                            width={300}
+                            height={300}
                             className="rounded-lg shadow-xl"
                         />
                     </div>
@@ -166,12 +174,33 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }>
                     delay: 0.7,
                     duration: 0.5
                 })}>
-                    <Button type="button" variant="outline"
-                        className="flex items-center justify-center space-x-2 text-base md:text-lg py-4 md:py-6 px-6 md:px-8 w-full md:w-auto"
-                        disabled={isSubmitting}>
-                        <BankCard className="h-5 w-5 md:h-6 md:w-6" />
-                        <span>Thanh toán bằng thẻ</span>
-                    </Button>
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Button variant="outline"
+                                className="flex items-center justify-center space-x-2 text-base md:text-lg py-4 md:py-6 px-6 md:px-8 w-full md:w-auto"
+                                disabled={isSubmitting}>
+                                <BankCard className="h-5 w-5 md:h-6 md:w-6" />
+                                <span>Thanh toán bằng thẻ</span>
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                            <DialogHeader>
+                                <DialogTitle>Quét mã QR để thanh toán</DialogTitle>
+                                <DialogDescription>
+                                    Sử dụng ứng dụng ngân hàng của bạn để quét mã QR bên dưới.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <div className="flex justify-center p-4">
+                                <Image
+                                    src={qrcode1Img}
+                                    alt="QR Code for payment"
+                                    width={350}
+                                    height={350}
+                                    className="rounded-lg shadow-xl"
+                                />
+                            </div>
+                        </DialogContent>
+                    </Dialog>
                 </MotionDiv>
                 <MotionDiv variants={bounceIn({
                     delay: 0.8,

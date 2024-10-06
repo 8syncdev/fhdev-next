@@ -27,7 +27,7 @@ const IntroSection: React.FC = React.memo(() => {
                     Tất cả <strong className="text-white">các khóa học lập trình</strong> bạn cần để thành công <strong className="text-white">trong một nơi.</strong>
                 </p>
                 <Button asChild className="group bg-gradient-to-r from-pink-500 to-violet-600 hover:from-pink-600 hover:to-violet-700">
-                    <Link href="#">
+                    <Link href="/course">
                         Bắt đầu ngay
                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>

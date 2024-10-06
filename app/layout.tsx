@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./_styles/dev.css"
+import SecurityProvider from "@/providers/security-provider";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,8 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-
-        {children}
+        <SecurityProvider>
+          {children}
+        </SecurityProvider>
       </body>
     </html>
   );
