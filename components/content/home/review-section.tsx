@@ -83,18 +83,18 @@ const CarouselIndicators: React.FC<CarouselIndicatorsProps> = ({ totalSlides, cu
 const reviews: Review[] = [
     {
         text: "Khóa học này thực sự tuyệt vời! Tôi đã học được rất nhiều về lập trình và cảm thấy tự tin hơn trong kỹ năng của mình.",
-        author: "Nguyễn Văn A",
-        image: "/images/reviewers/nguyen-van-a.jpg"
+        author: "Nguyễn Văn Anh",
+        image: "/images/reviewers/nguyen-van-anh.jpg"
     },
     {
         text: "Giảng viên rất nhiệt tình và kiến thức được truyền đạt một cách dễ hiểu. Tôi đã có thể áp dụng ngay những gì học được vào công việc.",
-        author: "Trần Thị B",
-        image: "/images/reviewers/tran-thi-b.jpg"
+        author: "Trần Thị Bình",
+        image: "/images/reviewers/tran-thi-binh.jpg"
     },
     {
         text: "Đây là một trong những khóa học online tốt nhất mà tôi từng tham gia. Nội dung phong phú và cập nhật với xu hướng công nghệ hiện tại.",
-        author: "Lê Văn C",
-        image: "/images/reviewers/le-van-c.jpg"
+        author: "Lê Văn Cường",
+        image: "/images/reviewers/le-van-cuong.jpg"
     }
 ];
 
