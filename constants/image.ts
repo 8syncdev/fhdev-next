@@ -23,6 +23,15 @@ import springreactImg from '@/public/tech/custom/springreact-course.jpg'
 
 import qrcode1Img from '@/public/payment/qrcode1.jpg'
 
+// TODO Fh Dev Docs
+import logoFhdev from '@/public/fh/logo/logo.png'
+import dev1 from '@/public/fh/team/dev-1.jpg'
+import dev2 from '@/public/fh/team/dev-2.jpg'
+import dev3 from '@/public/fh/team/dev-3.jpg'
+import dev4 from '@/public/fh/team/dev-4.jpg'
+import dev5 from '@/public/fh/team/dev-5.jpg'
+import dev6 from '@/public/fh/team/dev-6.jpg'
+
 export {
     seologoImg,
     bgImg, 
@@ -40,5 +49,13 @@ export {
     competitiveImg,
     nodereactImg,
     springreactImg,
-    qrcode1Img
+    qrcode1Img,
+    // TODO Fh Dev
+    logoFhdev,
+    dev1,
+    dev2,
+    dev3,
+    dev4,
+    dev5,
+    dev6,
 };

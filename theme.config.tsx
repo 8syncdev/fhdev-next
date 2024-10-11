@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 import { useConfig } from "nextra-theme-docs";
 import { seologoImg } from "@/constants";
 import Image from "next/image";
+import { logoFhdev } from "./constants/image";
 
 export default {
-  logo: <span>8 Sync Dev</span>,
+  logo: <span>Fullhouse Dev</span>,
   sidebar: {
     toggleButton: true,
   },
@@ -13,8 +14,8 @@ export default {
     link: "#",
     icon: (
       <Image
-        src={seologoImg}
-        alt="8 Sync Dev"
+        src={logoFhdev}
+        alt="Fullhouse Dev"
         // width={50}
         height={40}
       />
@@ -34,7 +35,7 @@ export default {
         <meta property="og:url" content={url} />
         <meta
           property="og:title"
-          content={frontMatter.title || "8 Sync Dev"}
+          content={frontMatter.title || "Fullhouse Dev"}
         />
         <meta
           property="og:description"
@@ -69,7 +70,7 @@ export default {
     ),
   },
   footer: {
-    text: <span>8 Sync Dev. Design by Alex Nguyễn</span>,
+    text: <span>Fullhouse Dev. Design by Alex Nguyễn</span>,
   },
   /**
      * editLink.text	React.ReactNode | React.FC	Content of the default edit link.
