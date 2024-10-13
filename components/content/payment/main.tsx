@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CreditCard, CheckCircle, AlertCircle, Clock, DollarSign, Info, Asterisk, Phone, CreditCard as BankCard, Loader2 } from 'lucide-react';
+import { CreditCard, CheckCircle, AlertCircle, Clock, DollarSign, Info, Asterisk, Phone, CreditCard as BankCard, Loader2, Zap, Shield, Gift, Star } from 'lucide-react';
 import { MotionDiv } from '@/components/shared/hoc';
-import { fadeIn, bounceIn } from '@/components/shared/hoc/motion/animations';
+import { fadeIn, bounceIn, staggerContainer, zoomIn, slideIn } from '@/components/shared/hoc/motion/animations';
 import { qrcode1Img } from '@/constants/image';
 import { allCourses } from '@/constants/seo/course';
 import { Input } from "@/components/ui/input";
@@ -25,6 +25,8 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import { BlurDeco } from '@/components/shared';
+import { Badge } from "@/components/ui/badge";
 
 const formSchema = z.object({
     courseName: z.string(),
@@ -44,111 +46,146 @@ const CourseInfo: React.FC<{ course: any }> = React.memo(({ course }) => {
     const discountPercentage = Math.round((1 - course.price / course.originalPrice) * 100);
 
     return (
-        <MotionDiv variants={fadeIn({ direction: 'up', delay: 0.3, duration: 0.5 })}>
-            <div className="flex flex-col md:flex-row items-center md:space-x-6 mb-8 bg-gray-800 p-4 md:p-6 rounded-lg shadow-lg">
-                <Image
-                    src={course.imgSrc}
-                    alt={course.nameCourse}
-                    width={150}
-                    height={150}
-                    className="rounded-lg border-4 border-violet-500 mb-4 md:mb-0"
-                />
-                <div className="text-center md:text-left">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{course.nameCourse}</h3>
-                    <div className="flex flex-col md:flex-row items-center md:space-x-8 mb-4">
-                        <div className="flex items-center mb-2 md:mb-0">
-                            <Clock className="h-6 w-6 mr-2 text-yellow-400" />
-                            <span className="text-lg md:text-xl font-semibold text-yellow-400">{course.duration} giờ</span>
-                        </div>
-                        <div className="flex items-center">
-                            <DollarSign className="h-6 w-6 mr-2 text-green-400" />
-                            <span className="text-lg md:text-xl font-semibold text-green-400">{course.price}đ</span>
-                            <span className="text-base md:text-lg line-through text-gray-400 ml-2">{course.originalPrice}đ</span>
+        <MotionDiv variants={zoomIn({ delay: 0.3, duration: 0.5 })}>
+            <Card className="bg-transparent border-2 border-blue-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)] hover:shadow-[0_0_25px_rgba(0,255,255,0.5)] transition-all duration-300">
+                <CardHeader className="bg-blue-900/20 p-6">
+                    <CardTitle className="text-2xl font-bold text-center text-blue-400 mb-2">{course.nameCourse}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                    <div className="flex flex-col md:flex-row items-center md:space-x-6">
+                        <Image
+                            src={course.imgSrc}
+                            alt={course.nameCourse}
+                            width={150}
+                            height={150}
+                            className="rounded-lg border-4 border-violet-500 mb-4 md:mb-0 transform hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="text-center md:text-left">
+                            <div className="flex flex-col md:flex-row items-center md:space-x-8 mb-4">
+                                <div className="flex items-center mb-2 md:mb-0">
+                                    <Clock className="h-6 w-6 mr-2 text-yellow-400" />
+                                    <span className="text-lg md:text-xl font-semibold text-yellow-400">{course.duration} giờ</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <DollarSign className="h-6 w-6 mr-2 text-green-400" />
+                                    <span className="text-lg md:text-xl font-semibold text-green-400">{course.price}đ</span>
+                                    <span className="text-base md:text-lg line-through text-gray-400 ml-2">{course.originalPrice}đ</span>
+                                </div>
+                            </div>
+                            <div className="mt-3">
+                                <Badge variant="secondary" className="bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-2 rounded-full text-lg font-bold animate-pulse">
+                                    Giảm {discountPercentage}%
+                                </Badge>
+                            </div>
                         </div>
                     </div>
-                    <div className="mt-3">
-                        <span className="bg-red-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full text-sm md:text-lg font-bold">
-                            Giảm {discountPercentage}%
-                        </span>
-                    </div>
-                </div>
-            </div>
+                </CardContent>
+            </Card>
         </MotionDiv>
     );
 });
 
 const PaymentInstructions: React.FC = React.memo(() => (
     <MotionDiv variants={fadeIn({ direction: 'up', delay: 0.4, duration: 0.5 })}>
-        <div className="bg-blue-900 p-4 md:p-6 rounded-lg mb-8 shadow-lg">
-            <h4 className="text-xl md:text-2xl font-semibold text-white mb-4 flex items-center">
-                <Info className="h-6 w-6 md:h-8 md:w-8 mr-2 md:mr-3" />
-                Hướng dẫn thanh toán
-            </h4>
-            <ul className="list-disc list-inside text-white text-base md:text-lg space-y-2 md:space-y-3">
-                <li>Chuyển khoản với nội dung: <strong>Họ và tên - Số điện thoại</strong></li>
-                <li>Sau khi chuyển khoản thành công, điền form bên dưới và gửi để chờ kết quả</li>
-                <li>Hoặc liên hệ số điện thoại <a href={`tel:${brand.author.phone}`} className="text-yellow-300 underline">{brand.author.phone}  {`(${brand.author.name})`}</a> để xác nhận thanh toán sau khi chuyển tiền</li>
-            </ul>
-        </div>
+        <Card className="bg-transparent border-2 border-indigo-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)] hover:shadow-[0_0_25px_rgba(0,255,255,0.5)] transition-all duration-300 my-6">
+            <CardHeader className="bg-indigo-900/20 p-6">
+                <CardTitle className="text-2xl font-bold text-center text-indigo-400 mb-2">Hướng dẫn thanh toán</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+                <ul className="list-none text-white text-lg space-y-3">
+                    {[
+                        { icon: <CreditCard className="h-6 w-6 text-yellow-400" />, text: "Chuyển khoản với nội dung: Họ và tên - Số điện thoại", isHtml: true },
+                        { icon: <CheckCircle className="h-6 w-6 text-green-400" />, text: "Sau khi chuyển khoản thành công, điền form bên dưới và gửi để chờ kết quả", isHtml: false },
+                        { icon: <Phone className="h-6 w-6 text-pink-400" />, text: "Hoặc liên hệ số điện thoại", phone: brand.author.phone, name: brand.author.name, isHtml: false }
+                    ].map((item, index) => (
+                        <li key={index} className="flex items-center">
+                            {item.icon}
+                            {item.isHtml ? (
+                                <span className="ml-2">
+                                    Chuyển khoản với nội dung: <strong>Họ và tên - Số điện thoại</strong>
+                                </span>
+                            ) : item.phone ? (
+                                <span className="ml-2">
+                                    {item.text} <a href={`tel:${item.phone}`} className="text-yellow-300 underline">{item.phone} ({item.name})</a> để xác nhận thanh toán sau khi chuyển tiền
+                                </span>
+                            ) : (
+                                <span className="ml-2">{item.text}</span>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </CardContent>
+        </Card>
     </MotionDiv>
 ));
 
 const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }> = React.memo(({ form, onSubmit, isSubmitting }) => (
     <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
-            <div className="bg-gray-800 p-4 md:p-6 rounded-lg mb-6 md:mb-8 shadow-lg">
-                <h4 className="text-xl md:text-2xl font-semibold text-white mb-4 flex items-center">
-                    <Info className="h-6 w-6 md:h-8 md:w-8 mr-2 md:mr-3" />
-                    Thông tin cần điền
-                </h4>
-                <ul className="list-disc list-inside text-white text-base md:text-lg space-y-2 md:space-y-3">
-                    <li>Số điện thoại (bắt buộc)</li>
-                    <li>Email (bắt buộc)</li>
-                    <li>Link Facebook (tùy chọn)</li>
-                    <li>Họ và tên (bắt buộc)</li>
-                </ul>
-            </div>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <MotionDiv variants={fadeIn({ direction: 'up', delay: 0.5, duration: 0.5 })}>
+                <Card className="bg-transparent border-2 border-purple-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(255,0,255,0.3)] hover:shadow-[0_0_25px_rgba(255,0,255,0.5)] transition-all duration-300">
+                    <CardHeader className="bg-purple-900/20 p-6">
+                        <CardTitle className="text-2xl font-bold text-center text-purple-400 mb-2">Thông tin cần điền</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        <ul className="list-none text-white text-lg space-y-3">
+                            {[
+                                { icon: <Phone className="h-6 w-6 text-green-400" />, text: "Số điện thoại (bắt buộc)" },
+                                { icon: <Zap className="h-6 w-6 text-yellow-400" />, text: "Email (bắt buộc)" },
+                                { icon: <Shield className="h-6 w-6 text-blue-400" />, text: "Link Facebook (tùy chọn)" },
+                                { icon: <Gift className="h-6 w-6 text-pink-400" />, text: "Họ và tên (bắt buộc)" }
+                            ].map((item, index) => (
+                                <li key={index} className="flex items-center">
+                                    {item.icon}
+                                    <span className="ml-2">{item.text}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </CardContent>
+                </Card>
+            </MotionDiv>
             
-            {['phone', 'email', 'linkFb', 'fullName', 'courseName', 'price', 'purchaseDate'].map((fieldName) => (
-                <FormField
-                    key={fieldName}
-                    control={form.control}
-                    name={fieldName as any}
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel className="flex items-center text-base md:text-lg">
-                                {fieldName === 'phone' && 'Số điện thoại'}
-                                {fieldName === 'email' && 'Email'}
-                                {fieldName === 'linkFb' && 'Link Facebook'}
-                                {fieldName === 'fullName' && 'Họ và tên'}
-                                {fieldName === 'courseName' && 'Tên khóa học'}
-                                {fieldName === 'price' && 'Giá'}
-                                {fieldName === 'purchaseDate' && 'Ngày mua'}
-                                {['phone', 'email', 'fullName'].includes(fieldName) && (
-                                    <Asterisk className="h-3 w-3 text-red-500 ml-1" />
-                                )}
-                            </FormLabel>
-                            <FormControl>
-                                <Input
-                                    {...field}
-                                    placeholder={
-                                        fieldName === 'phone' ? 'Ví dụ: 0912345678' :
-                                        fieldName === 'email' ? 'Ví dụ: example@gmail.com' :
-                                        fieldName === 'linkFb' ? 'Ví dụ: https://facebook.com/username' :
-                                        fieldName === 'fullName' ? 'Ví dụ: Nguyễn Văn A' : ''
-                                    }
-                                    className="text-base md:text-lg p-4 md:p-6"
-                                    disabled={isSubmitting || ['courseName', 'price', 'purchaseDate'].includes(fieldName)}
-                                />
-                            </FormControl>
-                            <FormDescription className="text-sm md:text-base">
-                                {['phone', 'email', 'fullName'].includes(fieldName) ? 'Bắt buộc' :
-                                 fieldName === 'linkFb' ? 'Tùy chọn' : 'Không thể chỉnh sửa'}
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+            {['phone', 'email', 'linkFb', 'fullName', 'courseName', 'price', 'purchaseDate'].map((fieldName, index) => (
+                <MotionDiv key={fieldName} variants={slideIn({ direction: 'right', type: 'spring', delay: 0.1 * index, duration: 0.5 })}>
+                    <FormField
+                        control={form.control}
+                        name={fieldName as any}
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className="flex items-center text-lg text-white">
+                                    {fieldName === 'phone' && 'Số điện thoại'}
+                                    {fieldName === 'email' && 'Email'}
+                                    {fieldName === 'linkFb' && 'Link Facebook'}
+                                    {fieldName === 'fullName' && 'Họ và tên'}
+                                    {fieldName === 'courseName' && 'Tên khóa học'}
+                                    {fieldName === 'price' && 'Giá'}
+                                    {fieldName === 'purchaseDate' && 'Ngày mua'}
+                                    {['phone', 'email', 'fullName'].includes(fieldName) && (
+                                        <Asterisk className="h-3 w-3 text-red-500 ml-1" />
+                                    )}
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        placeholder={
+                                            fieldName === 'phone' ? 'Ví dụ: 0912345678' :
+                                            fieldName === 'email' ? 'Ví dụ: example@gmail.com' :
+                                            fieldName === 'linkFb' ? 'Ví dụ: https://facebook.com/username' :
+                                            fieldName === 'fullName' ? 'Ví dụ: Nguyễn Văn A' : ''
+                                        }
+                                        className="text-lg p-6 bg-transparent border-blue-500 text-white focus:border-pink-500 transition-colors duration-300 shadow-[0_0_10px_rgba(0,0,255,0.3)]"
+                                        disabled={isSubmitting || ['courseName', 'price', 'purchaseDate'].includes(fieldName)}
+                                    />
+                                </FormControl>
+                                <FormDescription className="text-base text-gray-400">
+                                    {['phone', 'email', 'fullName'].includes(fieldName) ? 'Bắt buộc' :
+                                     fieldName === 'linkFb' ? 'Tùy chọn' : 'Không thể chỉnh sửa'}
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </MotionDiv>
             ))}
             
             <MotionDiv variants={fadeIn({
@@ -156,20 +193,20 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }>
                 delay: 0.6,
                 duration: 0.5
             })}>
-                <div className="mt-6 md:mt-8">
-                    <p className="text-center mb-4 md:mb-6 text-lg md:text-xl">Quét mã QR để thanh toán:</p>
+                <div className="mt-8">
+                    <p className="text-center mb-6 text-xl text-white">Quét mã QR để thanh toán:</p>
                     <div className="flex justify-center">
                         <Image
                             src={qrcode1Img}
                             alt="QR Code for payment"
                             width={300}
                             height={300}
-                            className="rounded-lg shadow-xl"
+                            className="rounded-lg shadow-xl border-4 border-blue-500 transform hover:scale-105 transition-transform duration-300"
                         />
                     </div>
                 </div>
             </MotionDiv>
-            <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mt-6 md:mt-8">
+            <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mt-8">
                 <MotionDiv variants={bounceIn({
                     delay: 0.7,
                     duration: 0.5
@@ -177,9 +214,9 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }>
                     <Dialog>
                         <DialogTrigger asChild>
                             <Button variant="outline"
-                                className="flex items-center justify-center space-x-2 text-base md:text-lg py-4 md:py-6 px-6 md:px-8 w-full md:w-auto"
+                                className="flex items-center justify-center space-x-2 text-lg py-6 px-8 w-full md:w-auto bg-transparent border-2 border-blue-500 text-white hover:bg-blue-500 hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(0,0,255,0.5)]"
                                 disabled={isSubmitting}>
-                                <BankCard className="h-5 w-5 md:h-6 md:w-6" />
+                                <BankCard className="h-6 w-6" />
                                 <span>Thanh toán bằng thẻ</span>
                             </Button>
                         </DialogTrigger>
@@ -196,7 +233,7 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }>
                                     alt="QR Code for payment"
                                     width={350}
                                     height={350}
-                                    className="rounded-lg shadow-xl"
+                                    className="rounded-lg shadow-xl border-4 border-blue-500"
                                 />
                             </div>
                         </DialogContent>
@@ -207,12 +244,12 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }>
                     duration: 0.5
                 })}>
                     <Button type="submit" variant="default"
-                        className="bg-green-600 hover:bg-green-700 flex items-center justify-center space-x-2 text-base md:text-lg py-4 md:py-6 px-6 md:px-8 w-full md:w-auto"
+                        className="bg-transparent border-2 border-green-500 text-white hover:bg-green-500 flex items-center justify-center space-x-2 text-lg py-6 px-8 w-full md:w-auto transition-all duration-300 shadow-[0_0_15px_rgba(0,255,0,0.5)]"
                         disabled={isSubmitting}>
                         {isSubmitting ? (
-                            <Loader2 className="h-5 w-5 md:h-6 md:w-6 animate-spin mr-2" />
+                            <Loader2 className="h-6 w-6 animate-spin mr-2" />
                         ) : (
-                            <CheckCircle className="h-5 w-5 md:h-6 md:w-6 mr-2" />
+                            <CheckCircle className="h-6 w-6 mr-2" />
                         )}
                         <span>{isSubmitting ? 'Đang xử lý...' : 'Xác nhận thanh toán'}</span>
                     </Button>
@@ -293,7 +330,7 @@ const PaymentPage: React.FC<Props> = ({ searchParams }) => {
             animate="show"
             className="container mx-auto px-4 md:px-6 py-8 md:py-12"
         >
-            <Card className="max-w-3xl mx-auto bg-gradient-to-br from-gray-900 to-gray-800 text-white shadow-2xl border-blue-900">
+            <Card className="max-w-3xl mx-auto bg-transparent text-white shadow-2xl border-blue-900">
                 <CardHeader>
                     <CardTitle className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6">Thanh Toán Khóa Học</CardTitle>
                 </CardHeader>

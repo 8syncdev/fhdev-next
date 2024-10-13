@@ -31,6 +31,7 @@ import dev3 from '@/public/fh/team/dev-3.jpg'
 import dev4 from '@/public/fh/team/dev-4.jpg'
 import dev5 from '@/public/fh/team/dev-5.jpg'
 import dev6 from '@/public/fh/team/dev-6.jpg'
+import pet from '@/public/fh/logo/pet.png'
 
 export {
     seologoImg,
@@ -58,4 +59,5 @@ export {
     dev4,
     dev5,
     dev6,
+    pet
 };

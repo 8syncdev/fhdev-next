@@ -8,7 +8,7 @@ interface BlurDecoProps {
     zIndex?: number;
 }
 
-const BlurDeco: React.FC<BlurDecoProps> = ({ brightness = 20, color = 'violet', size = 'medium', variant = 'default', zIndex = -50 }) => {
+const BlurDeco: React.FC<BlurDecoProps> = ({ brightness = 20, color = 'violet', size = 'medium', variant = 'default', zIndex = -100 }) => {
     const getSizeStyles = () => {
         switch (size) {
             case 'large':
@@ -67,7 +67,7 @@ const BlurDeco: React.FC<BlurDecoProps> = ({ brightness = 20, color = 'violet', 
     const variantBorder = getVariantBorder();
 
     const createStars = () => {
-        const starCount = 20;
+        const starCount = 10;
         const stars = [];
         for (let i = 0; i < starCount; i++) {
             const size = Math.random() * 0.25 + 0.25; // 0.25rem to 0.5rem

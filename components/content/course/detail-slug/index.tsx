@@ -5,19 +5,21 @@ import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Clock, DollarSign, BookOpen, Award, Star, Globe, Bookmark, CheckCircle, Target, Users } from 'lucide-react';
+import { Clock, DollarSign, BookOpen, Award, Star, Globe, Bookmark, CheckCircle, Target, Users, Zap } from 'lucide-react';
 import { ConstCourseType } from '@/constants/seo/course/type';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { fadeIn, slideIn, zoomIn, staggerContainer } from '@/components/shared/hoc/motion/animations';
+import { fadeIn, slideIn, zoomIn, staggerContainer, bounceIn } from '@/components/shared/hoc/motion/animations';
 import { MotionDiv } from '@/components/shared/hoc';
 import Link from 'next/link';
+import { BlurDeco } from '@/components/shared';
+
 interface CourseDetailProps {
   course: ConstCourseType | undefined;
 }
 
 const CourseHeader: React.FC<{ course: ConstCourseType }> = React.memo(({ course }) => (
   <MotionDiv variants={staggerContainer()} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}>
-    <Card className="bg-gray-800 bg-opacity-60 border-gray-700 backdrop-blur-sm">
+    <Card className="bg-transparent border-2 border-blue-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)] hover:shadow-[0_0_25px_rgba(0,255,255,0.5)] transition-all duration-300">
       <CardHeader className="flex flex-col md:flex-row items-center p-6">
         <MotionDiv variants={zoomIn({ duration: 1.2 })} className="w-full md:w-1/3 mb-6 md:mb-0 md:mr-6">
           <Image
@@ -52,15 +54,15 @@ const CourseContent: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
   const renderAccordionItem = useCallback((value: string, icon: React.ReactNode, title: string, content: string[]) => (
     <MotionDiv variants={fadeIn({ direction: 'up', type: 'tween', delay: 0.3, duration: 1 })}>
       <AccordionItem value={value}>
-        <AccordionTrigger className="text-xl font-semibold text-white bg-gray-800 bg-opacity-60 p-4 rounded-t-lg backdrop-blur-sm">
+        <AccordionTrigger className="text-xl font-semibold text-white bg-transparent border-2 border-purple-500 p-4 rounded-t-lg shadow-[0_0_10px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300">
           {icon}
           {title}
         </AccordionTrigger>
-        <AccordionContent className="bg-gray-800 bg-opacity-60 p-4 rounded-b-lg backdrop-blur-sm">
+        <AccordionContent className="bg-transparent border-2 border-t-0 border-purple-500 p-4 rounded-b-lg shadow-[0_0_10px_rgba(147,51,234,0.3)] hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] transition-all duration-300">
           <ul className="list-none text-gray-300">
             {content.map((item, index) => (
               <li key={index} className="flex items-center mb-2">
-                <CheckCircle className="mr-2 h-4 w-4 text-green-400" />
+                <Zap className="mr-2 h-4 w-4 text-yellow-400" />
                 {item}
               </li>
             ))}
@@ -93,10 +95,10 @@ const CourseContent: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
 
 const CourseDetails: React.FC<{ course: ConstCourseType }> = React.memo(({ course }) => (
   <MotionDiv initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} variants={fadeIn({ duration: 1 })}>
-    <Card className="bg-gray-800 bg-opacity-60 border-gray-700 backdrop-blur-sm">
+    <Card className="bg-transparent border-2 border-green-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(0,255,127,0.3)] hover:shadow-[0_0_25px_rgba(0,255,127,0.5)] transition-all duration-300">
       <CardContent className="p-6">
         <h2 className="text-2xl font-bold mb-4 text-white flex items-center">
-          <Bookmark className="mr-2 h-6 w-6 text-violet-400" />
+          <Bookmark className="mr-2 h-6 w-6 text-green-400" />
           Chi tiết khóa học
         </h2>
         <h3 className="text-xl font-semibold mb-4 text-white">{course.nameCourse}</h3>
@@ -122,7 +124,7 @@ const CourseDetails: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
           </div>
 
           <Link href={`/payment?slug=${course.slug}`}>
-            <Button className="w-full bg-violet-600 bg-opacity-70 hover:bg-violet-700 hover:bg-opacity-70 transition-colors duration-300">
+            <Button className="w-full bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
               <Bookmark className="mr-2 h-5 w-5" /> Đăng ký ngay
             </Button>
           </Link>
@@ -134,7 +136,7 @@ const CourseDetails: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
             </h3>
             <div className="flex flex-wrap gap-2">
               {course.tags.map((tag, index) => (
-                <Badge key={index} className="bg-gray-700 bg-opacity-60 text-white">{tag}</Badge>
+                <Badge key={index} className="bg-blue-500 bg-opacity-60 text-white">{tag}</Badge>
               ))}
             </div>
           </div>
@@ -150,7 +152,7 @@ const CourseDetails: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
                   alt={course.author.name}
                   width={50}
                   height={50}
-                  className="rounded-full"
+                  className="rounded-full border-2 border-green-400"
                 />
                 <div>
                   <p className="font-medium text-white">{course.author.name}</p>
@@ -168,11 +170,11 @@ const CourseDetails: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
 const CourseOutline: React.FC<{ course: ConstCourseType }> = React.memo(({ course }) => {
   const renderLesson = useCallback((lesson: any, lessonIndex: number) => (
     <MotionDiv key={lessonIndex} variants={fadeIn({ delay: 0.15 * (lessonIndex + 1), duration: 1 })}>
-      <AccordionItem value={`lesson-${lessonIndex}`}>
-        <AccordionTrigger className="text-xl bg-gray-800 bg-opacity-60 p-4 rounded-t-lg text-white backdrop-blur-sm">
+      <AccordionItem value={`lesson-${lessonIndex}`} className=''>
+        <AccordionTrigger className="text-xl bg-transparent border-2 border-blue-500 p-4 rounded-t-lg text-white shadow-[0_0_10px_rgba(59,130,246,0.3)] hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all duration-300">
           <div className="flex justify-between items-center w-full">
             <span className="flex items-center">
-              <BookOpen className="mr-2 h-5 w-5 text-violet-400" />
+              <BookOpen className="mr-2 h-5 w-5 text-blue-400" />
               {lesson.nameLesson}
             </span>
             <span className="text-sm text-gray-400 flex items-center">
@@ -181,13 +183,13 @@ const CourseOutline: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
             </span>
           </div>
         </AccordionTrigger>
-        <AccordionContent className="bg-gray-800 bg-opacity-60 p-4 rounded-b-lg backdrop-blur-sm">
+        <AccordionContent className="bg-transparent border-2 border-t-0 border-blue-500 p-4 rounded-b-lg shadow-[0_0_10px_rgba(59,130,246,0.3)] hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all duration-300">
           <ul className="space-y-2">
             {lesson.detailLessons.map((detail: any, detailIndex: number) => (
               <MotionDiv key={detailIndex} variants={fadeIn({ delay: 0.07 * (detailIndex + 1), duration: 0.8 })} whileInView="show">
                 <li className="flex justify-between items-center text-gray-300">
                   <span className="flex items-center">
-                    <CheckCircle className="mr-2 h-4 w-4 text-green-400" />
+                    <Zap className="mr-2 h-4 w-4 text-yellow-400" />
                     {detail.nameDetailLesson}
                   </span>
                   <span className="text-sm text-gray-400 flex items-center">
@@ -217,7 +219,7 @@ const CourseOutline: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
 });
 
 const CertificateSection: React.FC = React.memo(() => (
-  <MotionDiv initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} variants={fadeIn({ duration: 1.2 })} className="mt-12 text-center bg-gray-800 bg-opacity-60 p-8 rounded-lg backdrop-blur-sm">
+  <MotionDiv initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} variants={bounceIn({ delay: 0.5, duration: 0.8 })} className="mt-12 text-center bg-transparent border-2 border-yellow-500 p-8 rounded-lg shadow-[0_0_15px_rgba(234,179,8,0.3)] hover:shadow-[0_0_25px_rgba(234,179,8,0.5)] transition-all duration-300">
     <Award className="h-16 w-16 text-yellow-400 mx-auto mb-4" />
     <h3 className="text-xl font-bold mb-2 text-white">Chứng chỉ hoàn thành</h3>
     <p className="text-gray-300">Nhận chứng chỉ sau khi hoàn thành khóa học thành công</p>
@@ -230,7 +232,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 bg-opacity-50 text-gray-100 p-4 sm:p-6 md:p-8 backdrop-blur-sm">
+    <div className="min-h-screen bg-transparent text-gray-100 p-4 sm:p-6 md:p-8 border-2 rounded-md border-blue-900">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3">

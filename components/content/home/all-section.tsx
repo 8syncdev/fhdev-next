@@ -12,12 +12,12 @@ import { features } from './features-section';
 const AllSection: React.FC = () => {
   return (
     <>
+      <SavingSection />
       <IntroSection />
       <HelloSection />
       <FeaturesSection features={features} />
       <TopSellingSection />
       <ReviewSection />
-      <SavingSection />
     </>
   );
 };

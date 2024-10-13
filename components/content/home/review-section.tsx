@@ -134,7 +134,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ autoPlayInterval = 5000, 
     };
 
     return (
-        <section className="flex flex-col mb-10 my-5">
+        <section className="flex flex-col mb-10 my-5" id="feedback-section">
             <header className="my-12 mb-6 text-center">
                 <Badge variant="secondary" className="font-medium my-4 text-violet-500 text-sm tracking-widest uppercase">Đánh giá từ học viên</Badge>
                 <h2 className="text-3xl text-white">Học viên nói gì về chúng tôi</h2>
