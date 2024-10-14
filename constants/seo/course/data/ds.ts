@@ -6,7 +6,7 @@ const courseDataScience: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 74, // Thời lượng đã được cập nhật
   language: ["python"],
   slug: "course-data-science",

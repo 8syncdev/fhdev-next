@@ -66,32 +66,6 @@ const BlurDeco: React.FC<BlurDecoProps> = ({ brightness = 20, color = 'violet', 
     const variantColor = getVariantColor();
     const variantBorder = getVariantBorder();
 
-    const createStars = () => {
-        const starCount = 10;
-        const stars = [];
-        for (let i = 0; i < starCount; i++) {
-            const size = Math.random() * 0.25 + 0.25; // 0.25rem to 0.5rem
-            const angle = Math.random() * 360;
-            const distance = Math.random() * 20 + 40; // 3rem to 10rem from the center
-            const top = 50 + Math.sin(angle * Math.PI / 180) * distance;
-            const left = 50 + Math.cos(angle * Math.PI / 180) * distance;
-            stars.push(
-                <div
-                    key={i}
-                    className="absolute bg-yellow-200 rounded-full z-10"
-                    style={{
-                        width: `${size}rem`,
-                        height: `${size}rem`,
-                        top: `${top}%`,
-                        left: `${left}%`,
-                        // opacity: Math.random() * 0.5 + 0.5,
-                    }}
-                />
-            );
-        }
-        return stars;
-    };
-
     return (
         <div className='relative' style={{ zIndex }}>
             <div className="flex flex-row justify-center">
@@ -112,9 +86,6 @@ const BlurDeco: React.FC<BlurDecoProps> = ({ brightness = 20, color = 'violet', 
                         top: sizeStyles.top
                     }}
                 >
-                </div>
-                <div className='absolute' style={{ width: sizeStyles.width, height: sizeStyles.height }}>
-                    {createStars()}
                 </div>
             </div>
         </div>

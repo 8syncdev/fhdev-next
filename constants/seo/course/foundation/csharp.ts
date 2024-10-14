@@ -5,7 +5,7 @@ const courseCSharpBeginner: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 100, // Tổng thời lượng 100 giờ
   language: ["c#"],
   slug: "course-csharp-beginner",

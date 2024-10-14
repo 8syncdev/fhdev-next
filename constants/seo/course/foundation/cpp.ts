@@ -5,7 +5,7 @@ const courseCppBeginner: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 118,
   language: ["cpp"],
   slug: "course-cpp-beginner",

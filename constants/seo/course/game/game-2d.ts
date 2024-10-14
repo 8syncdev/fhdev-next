@@ -5,7 +5,7 @@ const courseUnity2DGame: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 92, // Updated total duration 92 hours
   language: ["c#"],
   slug: "course-unity-2d-game-development",

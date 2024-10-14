@@ -5,7 +5,7 @@ const courseUnity3DGame: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 160, // Updated total duration 160 hours
   language: ["c#"],
   slug: "course-unity-3d-game-development",

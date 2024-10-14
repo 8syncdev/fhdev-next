@@ -6,7 +6,7 @@ const courseAI: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 66, // Thời lượng đã được cập nhật
   language: ["python"],
   slug: "course-ai",

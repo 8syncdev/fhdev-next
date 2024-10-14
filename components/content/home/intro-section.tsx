@@ -23,7 +23,7 @@ const IntroSection: React.FC = React.memo(() => {
         >
             <MotionDiv variants={fadeIn({ direction: 'right', type: 'tween', delay: 0.2, duration: 1 })}>
                 <h1 className="text-4xl lg:text-[2.8rem] font-extrabold leading-tight text-white mb-4">
-                    Fullhouse Dev trung tâm duy nhất <span className="text-fuchsia-400">100% giáo viên đạt giải</span> <span className="text-emerald-300">quốc gia</span>, <span className="text-amber-300">quốc tế</span>
+                    Fullhouse Dev trung tâm duy nhất <span className="text-fuchsia-300">100% giáo viên đạt giải quốc gia, quốc tế</span>
                 </h1>
                 <p className="text-gray-300 text-lg mb-3">
                     Hệ thống website với <span className="font-semibold text-lime-300">3000 bài tập</span> tích hợp <span className="font-semibold text-cyan-300">AI đồng hành</span> trên từng dòng code
@@ -37,17 +37,20 @@ const IntroSection: React.FC = React.memo(() => {
                             </Link>
                         </Button>
                     </div>
-                    <div className="transition-transform hover:scale-105">
-                        <Image
-                            src={pet}
-                            alt="Pet"
-                            className="w-48 h-48 ml-6"
-                        />
-                    </div>
+                    {/* <div className="transition-transform hover:scale-105">
+                        
+                    </div> */}
                 </div>
             </MotionDiv>
-            
+
             <MotionDiv variants={fadeIn({ direction: 'left', type: 'tween', delay: 0.4, duration: 1 })}>
+                <div className='flex justify-center'>
+                    <Image
+                        src={pet}
+                        alt="Pet"
+                        className="w-40 h-40"
+                    />
+                </div>
                 <SlidePicDEV />
             </MotionDiv>
         </MotionDiv>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CreditCard, CheckCircle, AlertCircle, Clock, DollarSign, Info, Asterisk, Phone, CreditCard as BankCard, Loader2, Zap, Shield, Gift, Star } from 'lucide-react';
+import { CreditCard, CheckCircle, AlertCircle, Clock, DollarSign, Info, Asterisk, Phone, CreditCard as BankCard, Loader2, Zap, Shield, Gift, Star, Globe, CheckIcon } from 'lucide-react';
 import { MotionDiv } from '@/components/shared/hoc';
 import { fadeIn, bounceIn, staggerContainer, zoomIn, slideIn } from '@/components/shared/hoc/motion/animations';
 import { qrcode1Img } from '@/constants/image';
@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/dialog"
 import { BlurDeco } from '@/components/shared';
 import { Badge } from "@/components/ui/badge";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from '@/components/ui/label';
 
 const formSchema = z.object({
     courseName: z.string(),
@@ -35,7 +37,8 @@ const formSchema = z.object({
     phone: z.string().min(10, { message: "Số điện thoại phải có ít nhất 10 số" }),
     email: z.string().email({ message: "Email không hợp lệ" }),
     linkFb: z.string().url({ message: "Link Facebook không hợp lệ" }).optional().or(z.literal('')),
-    fullName: z.string().min(2, { message: "Họ tên phải có ít nhất 2 ký tự" })
+    fullName: z.string().min(2, { message: "Họ tên phải có ít nhất 2 ký tự" }),
+    selectedPlan: z.string().optional()
 });
 
 type Props = {
@@ -119,7 +122,164 @@ const PaymentInstructions: React.FC = React.memo(() => (
     </MotionDiv>
 ));
 
-const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }> = React.memo(({ form, onSubmit, isSubmitting }) => (
+const QRCodeDialog: React.FC = () => (
+    <Dialog>
+        <DialogTrigger asChild>
+            <Button variant="outline"
+                className="flex items-center justify-center space-x-2 text-lg py-6 px-8 w-full md:w-auto bg-transparent border-2 border-blue-500 text-white hover:bg-blue-500 hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(0,0,255,0.5)]">
+                <BankCard className="h-6 w-6" />
+                <span>Hiển thị mã QR</span>
+            </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+                <DialogTitle>Quét mã QR để thanh toán</DialogTitle>
+                <DialogDescription>
+                    Sử dụng ứng dụng ngân hàng của bạn để quét mã QR bên dưới.
+                </DialogDescription>
+            </DialogHeader>
+            <div className="flex justify-center p-4">
+                <Image
+                    src={qrcode1Img}
+                    alt="QR Code for payment"
+                    width={350}
+                    height={350}
+                    className="rounded-lg shadow-xl border-4 border-blue-500"
+                />
+            </div>
+        </DialogContent>
+    </Dialog>
+);
+
+const ComboPlans: React.FC<{ onPlanSelect: (plan: string | null) => void }> = React.memo(({ onPlanSelect }) => {
+    const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+    const plans = [
+        {
+            title: "BASIC",
+            price: "3300K",
+            originalPrice: "4500K",
+            duration: "4 tháng",
+            features: [
+                "1 KHÓA CNTT",
+                "45 buổi học CNTT chuyên sâu",
+                "3 tập sách song ngữ Anh - Việt",
+                "45 slide, tài liệu buổi học",
+                "45 tiết học qua video"
+            ],
+            icon: <Globe className="w-8 h-8 text-blue-400" />,
+            color: "blue"
+        },
+        {
+            title: "PREMIUM",
+            price: "5200K",
+            originalPrice: "7500K",
+            duration: "6 tháng", 
+            features: [
+                "1 KHÓA CNTT + 1 TACN",
+                "45 buổi học CNTT chuyên sâu",
+                "18 buổi tiếng anh chuyên ngành CNTT",
+                "3 tập sách song ngữ Anh - Việt",
+                "63 slide, video tài liệu buổi học",
+                "Nhóm Kèm riêng đặc biệt",
+                "Học lại miễn phí 1 lần"
+            ],
+            icon: <Star className="w-8 h-8 text-purple-400" />,
+            color: "purple"
+        },
+        {
+            title: "LUXURY",
+            price: "8000K",
+            originalPrice: "12000K",
+            duration: "10 tháng",
+            features: [
+                "2 KHÓA CNTT + 1 TACN",
+                "90 buổi học CNTT chuyên sâu",
+                "18 buổi tiếng anh chuyên ngành CNTT",
+                "6 tập sách song ngữ Anh - Việt",
+                "Kiểm tra, sửa chữa từng bài tập",
+                "108 slide, video, tài liệu buổi học",
+                "Nhóm kèm riêng Vip",
+                "Học lại miễn phí 2 lần"
+            ],
+            icon: <Gift className="w-8 h-8 text-green-400" />,
+            color: "green"
+        }
+    ];
+
+    const handlePlanSelect = (plan: string) => {
+        setSelectedPlan(prevPlan => prevPlan === plan ? null : plan);
+        onPlanSelect(selectedPlan === plan ? null : plan);
+    };
+
+    return (
+        <MotionDiv variants={fadeIn({ direction: 'up', delay: 0.5, duration: 0.5 })}>
+            <Card className="bg-transparent border-2 border-purple-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(255,0,255,0.3)] hover:shadow-[0_0_25px_rgba(255,0,255,0.5)] transition-all duration-300 my-6">
+                <CardHeader className="bg-purple-900/20 p-6">
+                    <CardTitle className="text-2xl font-bold text-center text-purple-400 mb-2">Chọn Gói Combo</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                    <div className="grid gap-6 md:grid-cols-3">
+                        {plans.map((plan, index) => (
+                            <MotionDiv
+                                key={plan.title}
+                                variants={zoomIn({ delay: 0.1 * index, duration: 0.5 })}
+                                whileHover={{ scale: 1.05 }}
+                                className="relative"
+                            >
+                                <div className="absolute right-4 top-4 z-10">
+                                    <div className="relative">
+                                        <input
+                                            type="checkbox"
+                                            id={plan.title}
+                                            checked={selectedPlan === plan.title}
+                                            onChange={() => handlePlanSelect(plan.title)}
+                                            className="sr-only"
+                                        />
+                                        <label
+                                            htmlFor={plan.title}
+                                            className={`block w-6 h-6 rounded-lg border-2 ${selectedPlan === plan.title ? `bg-${plan.color}-500 border-${plan.color}-500` : `border-${plan.color}-500`} cursor-pointer transition-all duration-300`}
+                                        >
+                                            {selectedPlan === plan.title && (
+                                                <CheckIcon className="w-5 h-5 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                                            )}
+                                        </label>
+                                    </div>
+                                </div>
+                                <Label htmlFor={plan.title} className="cursor-pointer">
+                                    <Card className={`w-full bg-transparent border-2 border-${plan.color}-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)] hover:shadow-[0_0_25px_rgba(0,255,255,0.5)] transition-all duration-300 ${selectedPlan === plan.title ? `shadow-[0_0_25px_rgba(0,255,255,0.5)]` : ''}`}>
+                                        <CardHeader className={`bg-${plan.color}-900/20 p-6`}>
+                                            <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-${plan.color}-900/20 flex items-center justify-center`}>
+                                                {plan.icon}
+                                            </div>
+                                            <CardTitle className={`text-2xl font-bold text-center text-${plan.color}-400 mb-2`}>{plan.title}</CardTitle>
+                                        </CardHeader>
+                                        <CardContent className="p-6">
+                                            <div className="text-center mb-6">
+                                                <p className={`text-4xl font-bold text-${plan.color}-400`}>{plan.price}</p>
+                                                <p className="text-sm text-gray-400 line-through">Giá gốc: {plan.originalPrice}</p>
+                                                <p className="text-sm text-gray-400">{plan.duration}</p>
+                                            </div>
+                                            <ul className="space-y-2">
+                                                {plan.features.map((feature, index) => (
+                                                    <li key={index} className="flex items-center">
+                                                        <CheckIcon className={`w-5 h-5 text-${plan.color}-400 mr-2 flex-shrink-0`} />
+                                                        <span className="text-sm text-gray-300">{feature}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </CardContent>
+                                    </Card>
+                                </Label>
+                            </MotionDiv>
+                        ))}
+                    </div>
+                </CardContent>
+            </Card>
+        </MotionDiv>
+    );
+});
+
+const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean, showCombo: boolean }> = React.memo(({ form, onSubmit, isSubmitting, showCombo }) => (
     <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <MotionDiv variants={fadeIn({ direction: 'up', delay: 0.5, duration: 0.5 })}>
@@ -144,6 +304,10 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean }>
                     </CardContent>
                 </Card>
             </MotionDiv>
+            
+            {showCombo && (
+                <ComboPlans onPlanSelect={(plan) => form.setValue('selectedPlan', plan)} />
+            )}
             
             {['phone', 'email', 'linkFb', 'fullName', 'courseName', 'price', 'purchaseDate'].map((fieldName, index) => (
                 <MotionDiv key={fieldName} variants={slideIn({ direction: 'right', type: 'spring', delay: 0.1 * index, duration: 0.5 })}>
@@ -267,11 +431,13 @@ const PaymentPage: React.FC<Props> = ({ searchParams }) => {
         phone: '',
         email: '',
         linkFb: '',
-        fullName: ''
+        fullName: '',
+        selectedPlan: ''
     });
 
     const [course, setCourse] = useState<any>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showCombo, setShowCombo] = useState(false);
     const { toast } = useToast();
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -291,6 +457,9 @@ const PaymentPage: React.FC<Props> = ({ searchParams }) => {
             };
             setInitialData(newData);
             form.reset(newData);
+            
+            // Check if the course is in the foundation category
+            setShowCombo(foundCourse.category === 'foundation');
         }
     }, [searchParams, form]);
 
@@ -305,6 +474,7 @@ const PaymentPage: React.FC<Props> = ({ searchParams }) => {
                 Email: ${values.email}
                 Link Facebook: ${values.linkFb || 'Không cung cấp'}
                 Họ và tên: ${values.fullName}
+                Gói đã chọn: ${values.selectedPlan || 'Không áp dụng'}
             `;
             await sendEmail(values.email, content);
             toast({
@@ -337,7 +507,7 @@ const PaymentPage: React.FC<Props> = ({ searchParams }) => {
                 <CardContent>
                     {course && <CourseInfo course={course} />}
                     <PaymentInstructions />
-                    <PaymentForm form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} />
+                    <PaymentForm form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} showCombo={showCombo} />
                 </CardContent>
             </Card>
             <MotionDiv 

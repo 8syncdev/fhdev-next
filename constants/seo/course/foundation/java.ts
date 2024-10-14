@@ -4,7 +4,7 @@ const courseJavaBeginner: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 135, // Tổng thời lượng 135 giờ (45 buổi * 3 tiếng/buổi)
   language: ["java"],
   slug: "course-java-beginner",

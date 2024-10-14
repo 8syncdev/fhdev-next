@@ -6,7 +6,7 @@ const courseDataAnalysis: ConstCourseType = {
   // Use to filter course
   rating: 4.8,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 70, // Thời lượng đã được cập nhật
   language: ["python"],
   slug: "course-data-analysis",

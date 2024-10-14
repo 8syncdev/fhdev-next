@@ -26,9 +26,18 @@ export const brand = {
         youtube: '',
         tiktok: '',
         website: '',
-        phone: '00000000'
+        phone: '0372229686',
+        email: 'trungtamlaptrinhfullhouse@gmail.com'
     },
     name: 'Fullhouse Dev',
     logo: seologoImg,
     slogan: 'Your Partner in Digital Transformation',
 }
+
+/**
+ * https://www.facebook.com/clblaptrinhfullhouse/
+Đức
+trungtamlaptrinhfullhouse@gmail.com
+Đức
+0372229686
+ */

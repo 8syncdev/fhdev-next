@@ -5,7 +5,7 @@ const coursePythonFoundation: ConstCourseType = {
   // Use to filter course
   rating: 4.7,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 108, // Updated to 36-45 sessions * 3 hours/session = 108-135 hours
   language: ["python"],
   slug: "course-python-foundation",

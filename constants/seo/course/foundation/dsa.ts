@@ -5,7 +5,7 @@ const courseDataStructuresAlgorithms: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 300, // Tổng thời lượng 300 giờ
   language: ["cpp"],
   slug: "course-data-structures-algorithms",

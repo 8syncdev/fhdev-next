@@ -5,7 +5,7 @@ const courseMobileFletPython: ConstCourseType = {
   // Use to filter course
   rating: 4.9,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 45, // Total duration 45 hours
   language: ["python"],
   slug: "course-mobile-flet-python",

@@ -5,7 +5,7 @@ import { ConstCourseType } from "../type";
 const competitiveProgrammingCourse: ConstCourseType = {
   rating: 4.5,
   originalPrice: 5500000,
-  price: 2500000,
+  price: 3300000,
   duration: 71,
   language: ["cpp"],
   slug: "lap-trinh-thi-dau",
