@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +12,10 @@ import { fadeIn, slideIn, zoomIn, staggerContainer, bounceIn } from '@/component
 import { MotionDiv } from '@/components/shared/hoc';
 import Link from 'next/link';
 import { BlurDeco } from '@/components/shared';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import VideoShow from '@/components/dev/video/videoshow';
+import { linkFeedback } from '@/constants/video';
+import Autoplay from "embla-carousel-autoplay";
 
 interface CourseDetailProps {
   course: ConstCourseType | undefined;
@@ -252,6 +256,82 @@ const CertificateSection: React.FC = React.memo(() => (
   </MotionDiv>
 ));
 
+const VideoFeedBack: React.FC = React.memo(() => {
+  const plugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
+
+  const carouselItems = useMemo(() => linkFeedback.map((item, index) => (
+    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+      <MotionDiv
+        variants={fadeIn({ direction: 'up', type: 'spring', delay: 0.1 * index, duration: 0.75 })}
+        className="p-1"
+      >
+        <Card className="bg-transparent border-2 border-blue-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)] hover:shadow-[0_0_25px_rgba(0,255,255,0.5)] transition-all duration-300">
+          <CardContent className="flex aspect-square items-center justify-center p-2 sm:p-4 md:p-6">
+            <VideoShow url={item.url} title={`Feedback ${index + 1}`} openDialog={true} />
+          </CardContent>
+        </Card>
+      </MotionDiv>
+    </CarouselItem>
+  )), []);
+
+  return (
+    <MotionDiv
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
+      variants={staggerContainer()}
+      className="mt-8 sm:mt-10 md:mt-12"
+    >
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white flex items-center">
+        <Star className="mr-2 h-5 w-5 sm:h-6 sm:w-6 text-yellow-400" />
+        Phản hồi từ học viên
+      </h2>
+      <Carousel
+        plugins={[plugin.current]}
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+        className="w-full"
+      >
+        <CarouselContent className="py-2 sm:py-4">
+          {carouselItems}
+        </CarouselContent>
+        <CarouselPrevious className="left-0 sm:left-2 bg-transparent border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300" />
+        <CarouselNext className="right-0 sm:right-2 bg-transparent border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300" />
+      </Carousel>
+      <style jsx global>{`
+        .carousel-item {
+          transition: all 0.5s ease;
+          opacity: 0.5;
+          transform: scale(0.9);
+        }
+        .carousel-item.active {
+          opacity: 1;
+          transform: scale(1);
+          box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        .carousel-item:not(.active):hover {
+          opacity: 0.8;
+          transform: scale(0.95);
+          box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        @media (max-width: 640px) {
+          .carousel-item {
+            transform: scale(0.95);
+          }
+          .carousel-item.active {
+            transform: scale(1);
+          }
+          .carousel-item:not(.active):hover {
+            transform: scale(0.98);
+          }
+        }
+      `}</style>
+    </MotionDiv>
+  );
+});
+
 const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
   if (!course) {
     return <div className="text-gray-300">Đang tải...</div>;
@@ -267,6 +347,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
             </div>
             <CourseContent course={course} />
             <CourseOutline course={course} />
+            <VideoFeedBack />
             <CertificateSection />
           </div>
 

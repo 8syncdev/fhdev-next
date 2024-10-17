@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MotionDiv, fadeIn, staggerContainer } from '@/components/shared/hoc'
 import { BlockCode } from '@/components/shared'
 import SlidePicDEV from '@/components/dev/slidepic/slide-pic'
-import { pet } from '@/constants/image'
+import { pet, pet2 } from '@/constants/image'
 
 const IntroSection: React.FC = React.memo(() => {
     return (
@@ -46,7 +46,7 @@ const IntroSection: React.FC = React.memo(() => {
             <MotionDiv variants={fadeIn({ direction: 'left', type: 'tween', delay: 0.4, duration: 1 })}>
                 <div className='flex justify-center'>
                     <Image
-                        src={pet}
+                        src={pet2}
                         alt="Pet"
                         className="w-40 h-40"
                     />

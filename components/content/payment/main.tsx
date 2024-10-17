@@ -29,6 +29,7 @@ import { BlurDeco } from '@/components/shared';
 import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
     courseName: z.string(),
@@ -50,7 +51,7 @@ const CourseInfo: React.FC<{ course: any }> = React.memo(({ course }) => {
 
     return (
         <MotionDiv variants={zoomIn({ delay: 0.3, duration: 0.5 })}>
-            <Card className="bg-transparent border-2 border-blue-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)] hover:shadow-[0_0_25px_rgba(0,255,255,0.5)] transition-all duration-300">
+            <Card className="bg-transparent border-2 border-blue-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)] hover:shadow-[0_0_25px_rgba(0,255,255,0.5)] transition-all duration-300 mb-5">
                 <CardHeader className="bg-blue-900/20 p-6">
                     <CardTitle className="text-2xl font-bold text-center text-blue-400 mb-2">{course.nameCourse}</CardTitle>
                 </CardHeader>
@@ -173,7 +174,7 @@ const ComboPlans: React.FC<{ onPlanSelect: (plan: string | null) => void }> = Re
             title: "PREMIUM",
             price: "5200K",
             originalPrice: "7500K",
-            duration: "6 tháng", 
+            duration: "6 tháng",
             features: [
                 "1 KHÓA CNTT + 1 TACN",
                 "45 buổi học CNTT chuyên sâu",
@@ -278,11 +279,10 @@ const ComboPlans: React.FC<{ onPlanSelect: (plan: string | null) => void }> = Re
         </MotionDiv>
     );
 });
-
-const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean, showCombo: boolean }> = React.memo(({ form, onSubmit, isSubmitting, showCombo }) => (
+const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean, showCombo: boolean, courses: any[], onCourseChange: (course: any) => void }> = React.memo(({ form, onSubmit, isSubmitting, showCombo, courses, onCourseChange }) => (
     <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <MotionDiv variants={fadeIn({ direction: 'up', delay: 0.5, duration: 0.5 })}>
+            {/* <MotionDiv variants={fadeIn({ direction: 'up', delay: 0.5, duration: 0.5 })}>
                 <Card className="bg-transparent border-2 border-purple-500 rounded-lg overflow-hidden shadow-[0_0_15px_rgba(255,0,255,0.3)] hover:shadow-[0_0_25px_rgba(255,0,255,0.5)] transition-all duration-300">
                     <CardHeader className="bg-purple-900/20 p-6">
                         <CardTitle className="text-2xl font-bold text-center text-purple-400 mb-2">Thông tin cần điền</CardTitle>
@@ -303,13 +303,53 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean, s
                         </ul>
                     </CardContent>
                 </Card>
+            </MotionDiv> */}
+
+            <MotionDiv variants={slideIn({ direction: 'right', type: 'spring', delay: 0.5, duration: 0.5 })}>
+                <FormField
+                    control={form.control}
+                    name="courseName"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="flex items-center text-lg text-white">
+                                Khóa học
+                                <Asterisk className="h-3 w-3 text-red-500 ml-1" />
+                            </FormLabel>
+                            <Select
+                                onValueChange={(value) => {
+                                    field.onChange(value);
+                                    const selectedCourse = courses.find(course => course.nameCourse === value);
+                                    if (selectedCourse) {
+                                        onCourseChange(selectedCourse);
+                                    }
+                                }}
+                                defaultValue={field.value}
+                            >
+                                <FormControl>
+                                    <SelectTrigger className="text-lg p-6 bg-transparent border-blue-500 text-white focus:border-pink-500 transition-colors duration-300 shadow-[0_0_10px_rgba(0,0,255,0.3)]">
+                                        <SelectValue placeholder={field.value} />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    {courses.map((course) => (
+                                        <SelectItem key={course.slug} value={course.nameCourse}>
+                                            {course.nameCourse}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <FormDescription className="text-base text-gray-400">
+                                Bắt buộc
+                            </FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
             </MotionDiv>
-            
-            {showCombo && (
-                <ComboPlans onPlanSelect={(plan) => form.setValue('selectedPlan', plan)} />
-            )}
-            
-            {['phone', 'email', 'linkFb', 'fullName', 'courseName', 'price', 'purchaseDate'].map((fieldName, index) => (
+
+
+
+            {['phone', 'email', 'linkFb', 'fullName'].map((fieldName, index) => (
                 <MotionDiv key={fieldName} variants={slideIn({ direction: 'right', type: 'spring', delay: 0.1 * index, duration: 0.5 })}>
                     <FormField
                         control={form.control}
@@ -321,9 +361,6 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean, s
                                     {fieldName === 'email' && 'Email'}
                                     {fieldName === 'linkFb' && 'Link Facebook'}
                                     {fieldName === 'fullName' && 'Họ và tên'}
-                                    {fieldName === 'courseName' && 'Tên khóa học'}
-                                    {fieldName === 'price' && 'Giá'}
-                                    {fieldName === 'purchaseDate' && 'Ngày mua'}
                                     {['phone', 'email', 'fullName'].includes(fieldName) && (
                                         <Asterisk className="h-3 w-3 text-red-500 ml-1" />
                                     )}
@@ -333,17 +370,17 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean, s
                                         {...field}
                                         placeholder={
                                             fieldName === 'phone' ? 'Ví dụ: 0912345678' :
-                                            fieldName === 'email' ? 'Ví dụ: example@gmail.com' :
-                                            fieldName === 'linkFb' ? 'Ví dụ: https://facebook.com/username' :
-                                            fieldName === 'fullName' ? 'Ví dụ: Nguyễn Văn A' : ''
+                                                fieldName === 'email' ? 'Ví dụ: example@gmail.com' :
+                                                    fieldName === 'linkFb' ? 'Ví dụ: https://facebook.com/username' :
+                                                        fieldName === 'fullName' ? 'Ví dụ: Nguyễn Văn A' : ''
                                         }
                                         className="text-lg p-6 bg-transparent border-blue-500 text-white focus:border-pink-500 transition-colors duration-300 shadow-[0_0_10px_rgba(0,0,255,0.3)]"
-                                        disabled={isSubmitting || ['courseName', 'price', 'purchaseDate'].includes(fieldName)}
+                                        disabled={isSubmitting}
                                     />
                                 </FormControl>
                                 <FormDescription className="text-base text-gray-400">
                                     {['phone', 'email', 'fullName'].includes(fieldName) ? 'Bắt buộc' :
-                                     fieldName === 'linkFb' ? 'Tùy chọn' : 'Không thể chỉnh sửa'}
+                                        fieldName === 'linkFb' ? 'Tùy chọn' : ''}
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
@@ -351,7 +388,9 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean, s
                     />
                 </MotionDiv>
             ))}
+
             
+
             <MotionDiv variants={fadeIn({
                 direction: 'up',
                 delay: 0.6,
@@ -370,6 +409,11 @@ const PaymentForm: React.FC<{ form: any, onSubmit: any, isSubmitting: boolean, s
                     </div>
                 </div>
             </MotionDiv>
+
+            {showCombo && (
+                <ComboPlans onPlanSelect={(plan) => form.setValue('selectedPlan', plan)} />
+            )}
+
             <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mt-8">
                 <MotionDiv variants={bounceIn({
                     delay: 0.7,
@@ -457,7 +501,7 @@ const PaymentPage: React.FC<Props> = ({ searchParams }) => {
             };
             setInitialData(newData);
             form.reset(newData);
-            
+
             // Check if the course is in the foundation category
             setShowCombo(foundCourse.category === 'foundation');
         }
@@ -493,6 +537,11 @@ const PaymentPage: React.FC<Props> = ({ searchParams }) => {
         }
     };
 
+    const handleCourseChange = (selectedCourse: any) => {
+        setCourse(selectedCourse);
+        form.setValue('price', selectedCourse.price);
+    };
+
     return (
         <MotionDiv
             variants={fadeIn({ direction: 'up', type: 'spring', delay: 0.2, duration: 0.7 })}
@@ -506,11 +555,18 @@ const PaymentPage: React.FC<Props> = ({ searchParams }) => {
                 </CardHeader>
                 <CardContent>
                     {course && <CourseInfo course={course} />}
+                    <PaymentForm
+                        form={form}
+                        onSubmit={onSubmit}
+                        isSubmitting={isSubmitting}
+                        showCombo={showCombo}
+                        courses={allCourses}
+                        onCourseChange={handleCourseChange}
+                    />
                     <PaymentInstructions />
-                    <PaymentForm form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} showCombo={showCombo} />
                 </CardContent>
             </Card>
-            <MotionDiv 
+            <MotionDiv
                 variants={fadeIn({ direction: 'up', delay: 0.9, duration: 0.5 })}
                 className="mt-8 md:mt-10 text-center text-gray-300"
             >
