@@ -45,6 +45,7 @@ type Lesson = {
 type DetailLesson = {
     nameDetailLesson: string;
     duration: number;
+    content?: string[]
 }
 
 export {

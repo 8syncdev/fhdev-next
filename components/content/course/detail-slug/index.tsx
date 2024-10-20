@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Clock, DollarSign, BookOpen, Award, Star, Globe, Bookmark, CheckCircle, Target, Users, Zap, Video, Mic, FileText, Code } from 'lucide-react';
-import { ConstCourseType } from '@/constants/seo/course/type';
+import { Clock, DollarSign, BookOpen, Award, Star, Globe, Bookmark, CheckCircle, Target, Users, Zap, Video, Mic, FileText, Code, VideoIcon, PlayCircle } from 'lucide-react';
+import { ConstCourseType, DetailLesson, Lesson } from '@/constants/seo/course/type';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { fadeIn, slideIn, zoomIn, staggerContainer, bounceIn } from '@/components/shared/hoc/motion/animations';
 import { MotionDiv } from '@/components/shared/hoc';
@@ -195,10 +195,10 @@ const CourseDetails: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
 ));
 
 const CourseOutline: React.FC<{ course: ConstCourseType }> = React.memo(({ course }) => {
-  const renderLesson = useCallback((lesson: any, lessonIndex: number) => (
+  const renderLesson = useCallback((lesson: Lesson, lessonIndex: number) => (
     <MotionDiv key={lessonIndex} variants={fadeIn({ delay: 0.15 * (lessonIndex + 1), duration: 1 })}>
       <AccordionItem value={`lesson-${lessonIndex}`} className=''>
-        <AccordionTrigger className="text-xl bg-transparent border-2 border-blue-500 p-4 rounded-t-lg text-white shadow-[0_0_10px_rgba(0,255,255,0.3)] hover:shadow-[0_0_20px_rgba(0,255,255,0.5)] transition-all duration-300">
+        <AccordionTrigger className="text-lg bg-transparent border-2 border-blue-500 p-4 rounded-t-lg text-white shadow-[0_0_10px_rgba(0,255,255,0.3)] hover:shadow-[0_0_20px_rgba(0,255,255,0.5)] transition-all duration-300">
           <div className="flex justify-between items-center w-full">
             <span className="flex items-center">
               <BookOpen className="mr-2 h-5 w-5 text-blue-400" />
@@ -212,20 +212,26 @@ const CourseOutline: React.FC<{ course: ConstCourseType }> = React.memo(({ cours
         </AccordionTrigger>
         <AccordionContent className="bg-transparent border-2 border-t-0 border-blue-500 p-4 rounded-b-lg shadow-[0_0_10px_rgba(0,255,255,0.3)] hover:shadow-[0_0_20px_rgba(0,255,255,0.5)] transition-all duration-300">
           <ul className="space-y-2">
-            {lesson.detailLessons.map((detail: any, detailIndex: number) => (
+            {lesson.detailLessons.map((detail: DetailLesson, detailIndex: number) => (
               <MotionDiv key={detailIndex} variants={fadeIn({ delay: 0.07 * (detailIndex + 1), duration: 0.8 })} whileInView="show">
-                <li className="flex justify-between items-center text-gray-300">
-                  <span className="flex items-center">
-                    {detail.type === 'video' && <Video className="mr-2 h-4 w-4 text-blue-400" />}
-                    {detail.type === 'audio' && <Mic className="mr-2 h-4 w-4 text-blue-400" />}
-                    {detail.type === 'document' && <FileText className="mr-2 h-4 w-4 text-blue-400" />}
-                    {detail.type === 'code' && <Code className="mr-2 h-4 w-4 text-blue-400" />}
-                    {detail.nameDetailLesson}
-                  </span>
-                  <span className="text-sm text-gray-400 flex items-center">
-                    <Clock className="mr-1 h-4 w-4" />
-                    {detail.duration} giờ
-                  </span>
+                <li className="flex flex-col space-y-2 text-gray-300">
+                  <div className="flex justify-between items-center">
+                    <span className="flex items-center text-white">
+                      <PlayCircle className="mr-2 h-4 w-4 text-blue-400" />
+                      {detail.nameDetailLesson}
+                    </span>
+                    <span className="text-sm text-gray-400 flex items-center">
+                      <Clock className="mr-1 h-4 w-4" />
+                      {detail.duration} giờ
+                    </span>
+                  </div>
+                  {detail.content && (
+                    <ul className="ml-6 list-disc space-y-1">
+                      {detail.content.map((item, itemIndex) => (
+                        <li key={itemIndex} className="text-sm text-gray-400">{item}</li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               </MotionDiv>
             ))}
